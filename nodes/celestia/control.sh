@@ -58,6 +58,11 @@ mainmenu
 }
 
 AddWallet(){
+clear
+printLogo
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 celestia-appd keys add wallet
 mainmenu
 }
@@ -68,11 +73,16 @@ printLogo
 printRed  =======================
 echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
 printRed  =======================
-mainmenu
 celestia-appd keys add orchestrator
+mainmenu
 }
 
 synced(){
+clear
+printLogo
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 curl -s localhost:26657/status | jq .result.sync_info.catching_up
 mainmenu
 }
