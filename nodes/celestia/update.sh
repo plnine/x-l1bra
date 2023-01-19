@@ -11,6 +11,11 @@ celestia-appd version
 echo $(cyanprint    'Версия обновления')
 echo 0.11.0
 
+if [["celestia-appd version" == "0.11.0"]] then
+echo "куку"
+
+fi
+
 mainmenu() {
     echo -ne "
 $(redprint    'Желаете обновить ?')
