@@ -12,9 +12,11 @@ var1=celestia-appd version
 echo $(cyanprint    'Версия обновления')
 #echo 0.11.0
 var2=0.11.0
-#echo $var1
 
-#if clestia
+
+if $var1 == $var2; then
+echo "hello"
+fi
 
 mainmenu() {
     echo -ne "
