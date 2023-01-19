@@ -70,20 +70,13 @@ back(){
 source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
 }
 
-submenu
-mainmenu() {
+submenu(){
     echo -ne "
 $(yellowprint    'Для того что бы остановить журнал логов надо нажать ctrl+z !!!')
 
 Для продолжения нажмите Enter:  "
    read -r ans
     case $ans in
-    1)
-        yes
-        ;;
-    2)
-        no
-        ;;
    
     *)
         sudo journalctl -u celestia-appd -f --no-hostname -o cat
