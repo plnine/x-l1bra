@@ -30,9 +30,6 @@ $(redprint     '0)') Выйти
     	delet
     	;;
     5)
-        info
-        ;;
-    6)
         back
         ;;
     0)
