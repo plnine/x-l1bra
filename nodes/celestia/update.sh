@@ -16,6 +16,6 @@ $var2=0.11.0
 if [ "$var1" == "$var2" ]; then
 echo "Обновление не требуется"
 elif $var1 != $var2;
-mainmenu
+
 
 
