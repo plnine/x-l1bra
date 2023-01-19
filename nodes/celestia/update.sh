@@ -11,9 +11,9 @@ echo $(cyanprint    'Установлена версия')
 celestia-appd version | (read; echo "$var1")
 #read $var1
 
-$var2 "0.11.0"
+#$var2="0.11.0"
 echo $var1
-echo $var2
+#echo $var2
 #if [ "$var1" == "$var2" ]; then
 #echo "Обновление не требуется"
 #elif $var1 != $var2;
