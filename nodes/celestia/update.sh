@@ -13,9 +13,9 @@ echo $(cyanprint    'Версия обновления')
 #echo 0.11.0
 var2=0.11.0
 celestia-appd version
-read NUM
+read $var1
 
-if $NUM == $var2; then
+if $var1 == $var2; then
 echo "Установлена все как надо"
 fi
 
