@@ -9,10 +9,11 @@ printRed  =======================
 mainmenu() {
     echo -ne "
 1) Проверить баланс
-2) Добавить кошелек
-3) Проверить синхронизацию
-4) Просмотреть логи
-5) Вернутся назад
+2) Добавить кошелек wallet
+3) Добавить кошелек orchestrator
+4) Проверить синхронизацию
+5) Просмотреть логи
+6) Вернутся назад
 $(yellowprint  '0) Выйти')
 $(cyanprint 'Введите цифру:')  "
    read -r ans
@@ -24,12 +25,15 @@ $(cyanprint 'Введите цифру:')  "
         AddWallet
         ;;
     3)
+        AddWalletOrchestrator
+        ;;
+    4)
         synced
         ;;
-    4)  
+    5)  
     	logs
     	;;
-    5)
+    6)
         back
         ;;
     0)
@@ -37,10 +41,12 @@ $(cyanprint 'Введите цифру:')  "
         exit 
         ;;
     *)
-        clear
-        source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
-        printRed  =======================================================================
-        echo $(redprint 'Неверный запрс !')
+	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
+	printLogo
+	printRed  =======================
+	echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+	printRed  =======================
+	echo $(redprint 'Неверный запрос !')
         mainmenu
         ;;
     esac
@@ -54,6 +60,10 @@ mainmenu
 AddWallet(){
 celestia-appd keys add wallet
 mainmenu
+}
+
+AddWalletOrchestrator(){
+celestia-appd keys add orchestrator
 }
 
 synced(){
@@ -71,7 +81,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/cel
 
 submenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'ctrl+z !!!')
+$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'CTRL+Z') $(yellowprint '!!!')
 
 Для продолжения нажмите Enter:  "
    read -r ans

@@ -22,9 +22,12 @@ $(cyanprint 'Введите цифру:') "
         ;;
    
     *)
-        clear
-        printLogo
-        printRed  ======================================================================= 
+	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
+	printLogo
+	printRed  =======================
+	echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+	printRed  =======================
+	echo $(redprint 'Неверный запрос !')
         mainmenu
         ;;
     esac
@@ -154,6 +157,11 @@ SNAP_NAME=$(curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/ |
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl start celestia-appd
+
+printRed  =============================================================================== 
+echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
+printRed  =============================================================================== 
+
 }
 
 submenu(){
@@ -166,8 +174,7 @@ $(greenprint    'Установка завершена.')
    read -r ans
     case $ans in
         1) 
-        sudo journalctl -u celestia-appd -f --no-hostname -o cat
-        submenu
+        subsubmenu
         ;;
         2) 
         curl -s localhost:26657/status | jq .result.sync_info.catching_up
@@ -179,14 +186,26 @@ $(greenprint    'Установка завершена.')
         *)
         source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
         printRed  =======================================================================
-        echo $(redprint 'Неверный запрс !')
+        echo $(redprint 'Неверный запрс !!!')
         submenu
         ;;
     esac
 }
 
-printRed  =============================================================================== 
-echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
-printRed  =============================================================================== 
+subsubmenu(){
+    echo -ne "
+$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'CTRL+Z') $(yellowprint '!!!')
+
+Для продолжения нажмите Enter:  "
+   read -r ans
+    case $ans in
+   
+    *)
+        sudo journalctl -u celestia-appd -f --no-hostname -o cat
+        submenu
+        ;;
+    esac
+}
+
 
 mainmenu
