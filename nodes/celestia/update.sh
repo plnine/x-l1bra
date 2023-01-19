@@ -28,10 +28,11 @@ $(cyanprint 'Введите цифру:') "
    
     *)
         clear
-        source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
-        printRed  =======================================================================
-        echo $(redprint 'Неверный запрос !')
-        mainmenu
+	printLogo
+	printRed  =======================
+	echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+	printRed  =======================
+	echo $(redprint 'Неверный запрос !')
         ;;
     esac
 }
