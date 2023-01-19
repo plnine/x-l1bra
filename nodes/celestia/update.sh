@@ -14,9 +14,8 @@ echo $(cyanprint    'Версия обновления')
 var2="0.11.0"
 
 
-if [$var1 == $var2]; then
+if [[$var1 == $var2]]; then
 echo "Установлена все как надо"
-else ma
 fi
 
 mainmenu() {
