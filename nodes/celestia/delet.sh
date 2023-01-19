@@ -36,7 +36,7 @@ clear
 printLogo
 printRed  ======================================================================= 
 echo $(yellowprint 'Идет удаление.....!')
-#systemctl stop celestia-appd.service && systemctl disable celestia-appd.service && rm -rf .celestia-app && rm -rf celestia-app
+systemctl stop celestia-appd.service && systemctl disable celestia-appd.service && rm -rf .celestia-app && rm -rf celestia-app
 echo $(greenprint 'Готово !')
 submenu
 
@@ -49,9 +49,7 @@ $(redprint    'Удаление завершено.')
    read -r ans
     case $ans in
         *)
-        clear
         source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
-        printRed  =======================================================================
         ;;
     esac
 }

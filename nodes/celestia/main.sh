@@ -50,7 +50,7 @@ $(redprint     '0)') Выйти
 }
 
 install(){
-source 
+echo 
 }
 
 control(){
