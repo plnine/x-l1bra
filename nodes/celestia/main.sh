@@ -54,11 +54,11 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/cel
 }
 
 control(){
-echo
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/control.sh)
 }
 
 update(){
-echo
+echo $(yellowprint 'Версия 0.11.0')
 }
 
 delet(){
