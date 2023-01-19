@@ -4,8 +4,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/c
 printLogo
 printRed  ======================================================================= 
 
-mainmenu() {
-}    
+mainmenu() {    
 echo -ne "
 $(cyanprint    'Вы действительно хотите начать установку !')
 $(yellowprint 'CELESTIA')
