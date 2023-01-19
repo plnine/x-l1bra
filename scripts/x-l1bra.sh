@@ -29,7 +29,7 @@ $(redprint     '0)') Exit
 }
 
 celestia(){
-source <(curl -s https://raw.githubusercontent.com/plnine/development/main/x-l1bra/nodes/celestia/main.sh)
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
 }
 
 
