@@ -63,7 +63,13 @@ mainmenu
 }
 
 AddWalletOrchestrator(){
+clear
+printLogo
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 celestia-appd keys add orchestrator
+mainmenu
 }
 
 synced(){
