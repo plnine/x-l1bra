@@ -72,7 +72,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/cel
 
 submenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать'  $(printCyan 'ctrl+z !!!')
+$(yellowprint    'Для того что бы остановить журнал логов надо нажать'  $(printCyan 'ctrl+z !!!'))
 
 Для продолжения нажмите Enter:  "
    read -r ans
