@@ -3,28 +3,28 @@
 #X-l1bra  
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
-printRed  =======================================================================
-
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 mainmenu() {
     echo -ne "
-$(yellowprint 'CELESTIA')
-$(greenprint   '1)') Установить
-$(cyanprint    '2)') Управление
-$(yellowprint  '3)') Обновить
-$(redprint     '4)') Удалить
-$(blueprint    '5)') Вернутся назад
-$(redprint     '0)') Выйти
+1) Управление
+2) Обновить
+3) Установка
+$(redprint     '4)') Удаление
+$(yellowprint  '5)') Вернутся назад
+$(yellowprint  '0)') Выйти
 Введите цифру:  "
    read -r ans
     case $ans in
     1)
-        install
-        ;;
-    2)
         control
         ;;
-    3)
+    2)
         update
+        ;;
+    3)
+        install
         ;;
     4)  
     	delet

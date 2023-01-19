@@ -3,19 +3,18 @@
 #X-l1bra  
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
-printRed  =======================================================================
-
-
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 mainmenu() {
     echo -ne "
-$(yellowprint 'CELESTIA')
-$(greenprint   '1)') Проверить баланс
-$(cyanprint    '2)') Добавить кошелек
-$(yellowprint  '3)') Проверить синхронизацию
-$(cyanprint    '4)') Просмотреть логи
-$(blueprint    '5)') Вернутся назад
-$(redprint     '0)') Выйти
-Введите цифру:  "
+1) Проверить баланс
+2) Добавить кошелек
+3) Проверить синхронизацию
+4) Просмотреть логи
+5) Вернутся назад
+$(yellowprint  '0) Выйти')
+$(cyanprint 'Введите цифру:')  "
    read -r ans
     case $ans in
     1)

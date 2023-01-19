@@ -1,16 +1,17 @@
 #! /bin/bash
-clear
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
-printLogo
-printRed  ======================================================================= 
 
+#X-l1bra  
+clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
+printLogo
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 mainmenu() {    
-echo -ne "
+    echo -ne "
 $(cyanprint    'Вы действительно хотите начать установку !')
-$(yellowprint 'CELESTIA')
-$(greenprint   '1)') Да
-$(redprint     '2)') Нет
-Введите цифру:  "
+$(greenprint   '1) Да')
+$(redprint     '2) Нет')
+$(cyanprint 'Введите цифру:') "
    read -r ans
     case $ans in
     1)
@@ -47,7 +48,14 @@ sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
 printGreen "Updates uploaded." && sleep 1
 
 printYellow "2.Installing packages........" && sleep 1
-#################################################
+############printRed  =============================================================================== 
+echo -e "Check logs:                ${CYAN} sudo journalctl -u celestia-appd -f --no-hostname -o cat ${NC}"
+echo -e "Check synchronization:     ${CYAN} celestia-appd status 2>&1 | jq .SyncInfo.catching_up${NC}"
+echo -e "Add New Wallet:            ${CYAN} celestia-appd keys add wallet${NC}"
+echo -e "Add New Orchestrator:      ${CYAN} celestia-appd keys add orchestrator${NC}"
+echo -e "Recover Existing Wallet:   ${CYAN} celestia-appd keys add wallet --recover${NC}"
+echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
+printRed  =============================================================================== #####################################
 sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
 #################################################
 printGreen "Installation completed." && sleep 1
@@ -177,6 +185,8 @@ $(greenprint    'Установка завершена.')
     esac
 }
 
-
+printRed  =============================================================================== 
+echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
+printRed  =============================================================================== 
 
 mainmenu

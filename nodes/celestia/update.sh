@@ -3,8 +3,9 @@
 #X-l1bra  
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
-printRed  =======================================================================
-
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 echo $(cyanprint    'Установлена версия')
 celestia-appd version
 echo $(cyanprint    'Версия обновления')
@@ -13,9 +14,9 @@ echo 0.11.0
 mainmenu() {
     echo -ne "
 $(redprint    'Желаете обновить ?')
-$(redprint   '1)') Да
-$(greenprint '2)') Нет
-Введите цифру:  "
+$(greenprint   '1) Да')
+$(redprint     '2) Нет')
+$(cyanprint 'Введите цифру:') "
    read -r ans
     case $ans in
     1)

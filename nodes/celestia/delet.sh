@@ -1,14 +1,17 @@
 #! /bin/bash
+
+#X-l1bra  
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
-printRed  ======================================================================= 
-
+printRed  =======================
+echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+printRed  =======================
 mainmenu() {
     echo -ne "
 $(redprint    'Вы действительно хотите удалить Celestia !!!!')
-$(redprint   '1)') Да
-$(greenprint '2)') Нет
-Введите цифру:  "
+$(redprint   '1) Да')
+$(greenprint '2) Нет')
+$(cyanprint 'Введите цифру:') "
    read -r ans
     case $ans in
     1)
