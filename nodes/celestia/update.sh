@@ -5,8 +5,10 @@ clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/
 printLogo
 printRed  =======================================================================
 
-Ваша версия 
+echo $(cyanprint    'Установлена версия')
 celestia-appd version
+echo $(cyanprint    'Версия обновления')
+echo 0.11.0
 
 mainmenu() {
     echo -ne "
@@ -34,6 +36,9 @@ $(greenprint '2)') Нет
 }
 
 yes(){
+clear
+printLogo
+printRed  =======================================================================
 mainmenu
 }
 
