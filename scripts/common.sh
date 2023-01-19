@@ -14,7 +14,7 @@ function printLine {
   echo "======================================================================================="
 }
 
-function printCyan {
+function v {
   echo -e "${CYAN}${1}${NC}"
 }
 
