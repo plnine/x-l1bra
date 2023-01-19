@@ -8,7 +8,7 @@ echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '**
 printRed  =======================
 
 echo $(cyanprint    'Установлена версия')
-var2=celestia-appd version
+#var2=celestia-appd version
 echo $(cyanprint    'Версия обновления')
 #echo 0.11.0
 var1=0.11.0
