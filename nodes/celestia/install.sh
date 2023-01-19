@@ -5,7 +5,8 @@ printLogo
 printRed  ======================================================================= 
 
 mainmenu() {
-}    echo -ne "
+}    
+echo -ne "
 $(cyanprint    'Вы действительно хотите начать установку !')
 $(yellowprint 'CELESTIA')
 $(greenprint   '1)') Да
@@ -149,7 +150,7 @@ sudo systemctl start celestia-appd
 }
 
 submenu(){
-    echo -ne "
+echo -ne "
 $(greenprint    'Установка завершена.')
 		1) Просмотреть логи
 		2) Проверить синхронизацию

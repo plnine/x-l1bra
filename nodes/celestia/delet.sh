@@ -39,7 +39,6 @@ echo $(yellowprint 'Идет удаление.....!')
 systemctl stop celestia-appd.service && systemctl disable celestia-appd.service && rm -rf .celestia-app && rm -rf celestia-app
 echo $(greenprint 'Готово !')
 submenu
-
 }
 
 submenu(){
