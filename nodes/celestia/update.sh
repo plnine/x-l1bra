@@ -11,7 +11,7 @@ echo $(cyanprint    'Установлена версия')
 var1=celestia-appd version
 echo $(cyanprint    'Версия обновления')
 #echo 0.11.0
-var2="0.11.0"
+var2=0.11.0
 
 
 if "$var1" == "$var2"; then
