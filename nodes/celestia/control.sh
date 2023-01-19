@@ -12,7 +12,7 @@ $(yellowprint 'CELESTIA')
 $(greenprint   '1)') Проверить баланс
 $(cyanprint    '2)') Добавить кошелек
 $(yellowprint  '3)') Проверить синхронизацию
-$(cyanrint     '4)') Просмотреть логи
+$(cyanprint    '4)') Просмотреть логи
 $(blueprint    '5)') Вернутся назад
 $(redprint     '0)') Выйти
 Введите цифру:  "
@@ -72,7 +72,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/cel
 
 submenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать'  $(cyanprint 'ctrl+z !!!'))
+$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'ctrl+z !!!')
 
 Для продолжения нажмите Enter:  "
    read -r ans
