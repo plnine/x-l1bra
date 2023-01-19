@@ -6,17 +6,15 @@ printLogo
 printRed  =======================
 echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
 printRed  =======================
+
 echo $(cyanprint    'Установлена версия')
-celestia-appd version
+var2=celestia-appd version
 echo $(cyanprint    'Версия обновления')
 #echo 0.11.0
 var1=0.11.0
 echo $var1
 
-#if [$celestia-appd version] == "0.11.0"; then
-#echo "куку"
-#else
-#fi
+#if clestia
 
 mainmenu() {
     echo -ne "
