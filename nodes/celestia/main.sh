@@ -50,7 +50,7 @@ $(redprint     '0)') Выйти
 }
 
 install(){
-echo 
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/install.sh)
 }
 
 control(){
@@ -62,7 +62,7 @@ echo
 }
 
 delet(){
-echo
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/delet.sh)
 }
 
 back(){
