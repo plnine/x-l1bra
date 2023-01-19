@@ -59,6 +59,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/cel
 
 update(){
 echo $(yellowprint 'Версия 0.11.0')
+mainmenu
 }
 
 delet(){
