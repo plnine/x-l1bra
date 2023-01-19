@@ -64,6 +64,9 @@ printRed  =======================
 echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
 printRed  =======================
 celestia-appd keys add wallet
+printRed         ============================================
+echo $(redprint '== ОБЯЗАТЕЛЬНО СОХРАНИТЕ СИД ФРАЗУ !!!!!! ==')
+printRed         ============================================
 mainmenu
 }
 
