@@ -11,7 +11,7 @@ echo $(cyanprint    'Установлена версия')
 celestia-appd version
 read $var1
 
-var2=0.11.0
+var2="0.11.0"
 
 
 
