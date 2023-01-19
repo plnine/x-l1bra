@@ -58,11 +58,15 @@ echo
 }
 
 update(){
-
+echo
 }
 
 delet(){
 echo
+}
+
+back(){
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/x-l1bra.sh)
 }
 
 mainmenu
