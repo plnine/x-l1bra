@@ -12,7 +12,7 @@ $(yellowprint 'CELESTIA')
 $(greenprint   '1)') Проверить баланс
 $(cyanprint    '2)') Добавить кошелек
 $(yellowprint  '3)') Проверить синхронизацию
-$(redprint     '4)') Просмотреть логи
+$(cyanrint     '4)') Просмотреть логи
 $(blueprint    '5)') Вернутся назад
 $(redprint     '0)') Выйти
 Введите цифру:  "
