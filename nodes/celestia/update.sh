@@ -9,9 +9,11 @@ printRed  =======================
 echo $(cyanprint    'Установлена версия')
 celestia-appd version
 echo $(cyanprint    'Версия обновления')
-echo 0.11.0
+#echo 0.11.0
+var1=0.11.0
+echo $var1
 
-#if ["$celestia-appd" version] == "0.11.0"; then
+#if [$celestia-appd version] == "0.11.0"; then
 #echo "куку"
 #else
 #fi
