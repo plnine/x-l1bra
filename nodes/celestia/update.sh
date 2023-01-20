@@ -13,8 +13,8 @@ var2=`celestia-appd version`
 #echo $var1
 var1="0.11.0"
 #var2=0.11.0
-echo -n "$var2"
-read -r var1
+#echo -n "$var2"
+#read -r var1
 
 # case $var1 in
 # 	0.11.0)
