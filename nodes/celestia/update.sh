@@ -14,8 +14,8 @@ var2=0.11.0
 
 if (( "$var1" -eq "$var2" )); then
 echo "OK"
-elif $var1 != $var2; then
-echo upfate
+elif (( "$var1" != "$var2" )); then
+echo "upfate"
 fi
 
 #if [ "$var1" == "$var2" ]; then
