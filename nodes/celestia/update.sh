@@ -11,7 +11,7 @@ printRed  =======================
 echo $(cyanprint    'Установлена версия')
 var2=`celestia-appd version`
 #echo $var1
-var1='0.11.0'
+var1="0.11.0"
 #var2=0.11.0
 echo -n "$var2"
 read -r var1
