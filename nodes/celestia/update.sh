@@ -14,7 +14,7 @@ var1=`celestia-appd version`
 #read $var1
 var2=0.11.0
 echo $var1
-echo $var2
+#echo $var2
 
 #if [ version = "$var2" ]; then
 #echo "OK"
