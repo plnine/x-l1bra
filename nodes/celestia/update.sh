@@ -12,9 +12,9 @@ var1=`celestia-appd version`
 
 var2=0.11.0
 
-if (( "$var1" -eq "$var2" )); then
+if (( "1$var1" -eq "1$var2" )); then
 echo "OK"
-elif (( "$var1" != "$var2" )); then
+elif (( "1$var1" != "1$var2" )); then
 echo "upfate"
 fi
 
