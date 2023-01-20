@@ -8,12 +8,15 @@ echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '**
 printRed  =======================
 
 echo $(cyanprint    'Установлена версия')
-version=(celestia-appd version)
+version=$(celestia-appd version)
 #read $var1
+$var2="0.11.0"
 
-#$var2="0.11.0"
+if [ "$version = $var=2" ]; then
+echo OK
+fi
 #echo $version
-echo $version
+#echo $version
 #if [ "$var1" == "$var2" ]; then
 #echo "Обновление не требуется"
 #elif $var1 != $var2;
