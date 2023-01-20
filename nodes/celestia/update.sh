@@ -12,11 +12,10 @@ var1=`celestia-appd version`
 
 var2="0.11.0"
 
-if [ "$var1" = "$var2" ]; then
+if ("$var1" == "$var2"); then
 echo "OK"
 fi
-#echo $version
-#echo $version
+
 #if [ "$var1" == "$var2" ]; then
 #echo "Обновление не требуется"
 #elif $var1 != $var2;
