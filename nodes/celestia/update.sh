@@ -15,7 +15,7 @@ var2=0.11.0
 
 if [[ $var1 = $var2 ]]; then
 echo "OK"
-elif [[ $var1 -gt $var2 ]]; then
+else 
 echo "upfate"
 fi
 
