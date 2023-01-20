@@ -14,8 +14,13 @@ var1=`celestia-appd version`
 var2=0.11.0
 
 case $var1 in
-	$var2
-	echo ok
+	"$var2"
+	 echo ok
+	 ;;
+	 
+	 "111"
+	 echo no
+	 ;;
 esac	
 
 #if [[ "$var1" == "$var2" ]]; then
