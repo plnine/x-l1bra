@@ -15,8 +15,7 @@ var2="0.11.0"
 
 if [[ "$var1" = "$var2" ]]; then
 echo "OK"
-else 
-echo "upfate"
+else echo "upfate"
 fi
 
 #if [ "$var1" == "$var2" ]; then
