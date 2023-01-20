@@ -9,16 +9,16 @@ printRed  =======================
 
 echo $(cyanprint    'Установлена версия')
 
-version(){
-celestia-appd version
-}
+var1=`celestia-appd version`
 
 #read $var1
-$var2=0.11.0
+var2=0.11.0
+echo $var1
+echo $var2
 
-if [ version = "$var2" ]; then
-echo "OK"
-fi
+#if [ version = "$var2" ]; then
+#echo "OK"
+#fi
 #echo $version
 #echo $version
 #if [ "$var1" == "$var2" ]; then
