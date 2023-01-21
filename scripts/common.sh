@@ -14,7 +14,7 @@ function printLine {
   echo "======================================================================================="
 }
 
-function v {
+function prinCyan {
   echo -e "${CYAN}${1}${NC}"
 }
 
@@ -22,9 +22,9 @@ function printRed {
   echo -e "${RED}${1}${NC}"
 }
 
-function printGreen {
-  echo -e "${GREEN}${1}${NC}"
-}
+# function printGreen {
+#   echo -e "${GREEN}${1}${NC}"
+# }
 
 function printYellow {
   echo -e "${YELLOW}${1}${NC}"

@@ -7,7 +7,7 @@ printRed  ====================
 echo $(redprint '==') $(blueprint 'NIBIRU') $(redprint '==') $(yellowprint '****') $(redprint '==')
 printRed  ====================
 
-echo $(yellowbprint 'Минимальные требования к оборудованию.')
+echo $(printRed 'Минимальные требования к оборудованию.')
 
 echo $(cyanprint '4CPU 8RAM 100GB')
 printRed  ====================
