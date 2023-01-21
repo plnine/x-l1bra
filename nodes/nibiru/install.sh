@@ -150,8 +150,20 @@ printYellow "10.Сбрасываем данные........"
 printGreen "Готово." && sleep 1
 
 printYellow "11.Подгружаем снапшот........"
-	SNAP_NAME=$(curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/ | egrep -o ">mocha.*\.tar.lz4" | tr -d ">")
-	curl https://snapshots3-testnet.nodejumper.io/celestia-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
+	SNAP_RPC="https://nibiru-testnet.nodejumper.io:443"
+
+	LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height)
+	BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000))
+	TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+	echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+	sed -i 's|^enable *=.*|enable = true|' $HOME/.nibid/config/config.toml
+	sed -i 's|^rpc_servers *=.*|rpc_servers = "'$SNAP_RPC,$SNAP_RPC'"|' $HOME/.nibid/config/config.toml
+	sed -i 's|^trust_height *=.*|trust_height = '$BLOCK_HEIGHT'|' $HOME/.nibid/config/config.toml
+	sed -i 's|^trust_hash *=.*|trust_hash = "'$TRUST_HASH'"|' $HOME/.nibid/config/config.toml
+
+	curl https://snapshots3-testnet.nodejumper.io/nibiru-testnet/wasm.lz4 | lz4 -dc - | tar -xf - -C $HOME/.nibid/data
 printGreen "Готово."
 
 printYellow "11.Запускаем ноду........" && sleep 1
