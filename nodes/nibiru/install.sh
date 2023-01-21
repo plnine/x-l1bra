@@ -6,7 +6,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/f
 printLogo
 printRed  ====================
 echo $(printGreen '==') $(blueprint 'NIBIRU') $(redprint '==') $(yellowprint '****') $(redprint '==')
-printRed  ====================
+printGreen  ====================
 
 echo $(printRed 'Минимальные требования к оборудованию.')
 
