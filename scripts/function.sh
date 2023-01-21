@@ -60,4 +60,4 @@
 	RESET="${ESC}[0m"
 	
 	
-printGreen () { printf "${GREEN}$BLINK%s${RESET}\n" "$1"; }	
+printGreen () { printf "${GREEN}${BLINK}%s${RESET}\n" "$1"; }	
