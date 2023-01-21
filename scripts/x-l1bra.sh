@@ -64,6 +64,7 @@ mainmenu
 }
 
 shardeum(){
+#source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/shardeum/main.sh)
 clear
 printLogo
 printRed  =======================================================================
