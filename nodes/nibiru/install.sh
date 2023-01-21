@@ -59,10 +59,10 @@ printGreen "Готово." && sleep 1
 
 
 printYellow "3. Задаем переменные........" && sleep 1
-		HAIN_ID="mocha"
-		CHAIN_DENOM="utia"
-		BINARY_NAME="celestia-appd"
-		BINARY_VERSION_TAG="v0.11.0"
+		CHAIN_ID="nibiru-testnet-2"
+		CHAIN_DENOM="unibi"
+		BINARY_NAME="nibid"
+		BINARY_VERSION_TAG="v0.16.3"
 		IDENTITY="8F3C23EC3306B513"
 		echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
 		echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
@@ -124,19 +124,19 @@ printGreen "Готово." && sleep 1
 
 
 printYellow "10.Создаем сервис файл........" && sleep 1
-	sudo tee /etc/systemd/system/nibid.service > /dev/null << EOF
-	[Unit]
-	Description=Nibiru Node
-	After=network-online.target
-	[Service]
-	User=$USER
-	ExecStart=$(which nibid) start
-	Restart=on-failure
-	RestartSec=10
-	LimitNOFILE=10000
-	[Install]
-	WantedBy=multi-user.target
-	EOF
+sudo tee /etc/systemd/system/nibid.service > /dev/null << EOF
+[Unit]
+Description=Nibiru Node
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which nibid) start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=10000
+[Install]
+WantedBy=multi-user.target
+EOF
 printGreen "Готово." && sleep 1
 
 
