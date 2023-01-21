@@ -35,7 +35,7 @@ $(printCyan	'Введите цифру:') "
 		printRed  ====================
 		echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
 		printRed  ====================
-		echo $(redprint 'Неверный запрос !')
+		echo $(printRed 'Неверный запрос !')
         	mainmenu
         	;;
     esac
@@ -45,43 +45,40 @@ $(printCyan	'Введите цифру:') "
 no() { source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh) }
 yes(){ clear && printLogo && printRed  =======================================================================
 read -r -p "Введите имя ноды:" NODE_MONIKER
+}
 
-
-printCyan "Пожалуйста подождите........" && sleep 1
-	printYellow "1.  обновляем наш сервер........" && sleep 1
+printBCyan "Пожалуйста подождите........" && sleep 1
+	printYellow "1.  Oбновляем наш сервер........" && sleep 1
 		sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
 
 
 printGreen "Готово." && sleep 1
 	printYellow "2.Устанавливаем дополнительные пакеты........" && sleep 1
 		sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
-printGreen "Установка пакетов завершена." && sleep 1
+printGreen "Готово." && sleep 1
 
 
-printYellow "5. variables........" && sleep 1
-CHAIN_ID="mocha"
-CHAIN_DENOM="utia"
-BINARY_NAME="celestia-appd"
-BINARY_VERSION_TAG="v0.11.0"
-IDENTITY="8F3C23EC3306B513"
-echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
-echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
-echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
-echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
-echo -e "IDENTITY:           ${CYAN}$IDENTITY${NC}"
-#################################################
-printGreen "Completed." && sleep 1
+printYellow "5. Задаем переменные........" && sleep 1
+		HAIN_ID="mocha"
+		CHAIN_DENOM="utia"
+		BINARY_NAME="celestia-appd"
+		BINARY_VERSION_TAG="v0.11.0"
+		IDENTITY="8F3C23EC3306B513"
+		echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
+		echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
+		echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
+		echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
+		echo -e "IDENTITY:           ${CYAN}$IDENTITY${NC}"
+printGreen "Готово." && sleep 1
 
-printYellow "3.Installing go........" && sleep 1
-#################################################
-if ! [ -x "$(command -v go)" ]; then
-  source <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-scripts/master/utils/go_install.sh")
-  source .bash_profile
-fi
 
-echo "$(go version)"
-#################################################
-printGreen "Completed." && sleep 1
+printYellow "3.Устанавливаем go........" && sleep 1
+	if ! [ -x "$(command -v go)" ]; then
+		source <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-scripts/master/utils/go_install.sh")
+		source .bash_profile
+	fi
+	echo "$(go version)"
+printGreen "Готово." && sleep 1
 
 printYellow "4.Download and install binary........"
 #################################################
