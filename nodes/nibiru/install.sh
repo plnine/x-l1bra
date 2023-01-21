@@ -6,8 +6,8 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/f
 printLogo
 printRed  ====================
 echo $(printGreen '==') $(blueprint 'NIBIRU') $(redprint '==') $(yellowprint '****') $(redprint '==')
-printGreen  ====================
-
+printBBlue  ====================
+printBlue  ====================
 echo $(printRed 'Минимальные требования к оборудованию.')
 
 echo $(cyanprint '4CPU 8RAM 100GB')

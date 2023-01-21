@@ -23,25 +23,36 @@
 	BREAK='\033[m'			#	${BREAK}		# все атрибуты по умолчанию
 	NORMAL='\033[0m'		#	${NORMAL}		# все атрибуты по умолчанию
 	 
-	# Цвет текста:
+	# Цвет текста менее яркий:
+	TBLACK='\033[30m'		#	${BLACK}		# чёрный цвет знаков
+	TRED='\033[31m'			#	${RED}			# красный цвет знаков
+	TGREEN='\033[32m'		#	${GREEN}		# зелёный цвет знаков
+	TYELLOW='\033[33m'		#	${YELLOW}		# желтый цвет знаков
+	TBLUE='\033[34m'		#	${BLUE}			# синий цвет знаков
+	TMAGENTA='\033[35m'		#	${MAGENTA}		# фиолетовый цвет знаков
+	TCYAN='\033[36m'		#	${CYAN}			# цвет морской волны знаков
+	TGRAY='\033[37m'		#	${GRAY}			# серый цвет знаков
+	
+	# Цвет текста яркий:
 	BLACK='\033[30m'		#	${BLACK}		# чёрный цвет знаков
-	RED='\033[31m'			#	${RED}			# красный цвет знаков
-	GREEN='\033[32m'		#	${GREEN}		# зелёный цвет знаков
-	YELLOW='\033[33m'		#	${YELLOW}		# желтый цвет знаков
-	BLUE='\033[34m'			#	${BLUE}			# синий цвет знаков
-	MAGENTA='\033[35m'		#	${MAGENTA}		# фиолетовый цвет знаков
-	CYAN='\033[36m'			#	${CYAN}			# цвет морской волны знаков
-	GRAY='\033[37m'			#	${GRAY}			# серый цвет знаков
+	RED='\033[91m'			#	${RED}			# красный цвет знаков
+	GREEN='\033[92m'		#	${GREEN}		# зелёный цвет знаков
+	YELLOW='\033[93m'		#	${YELLOW}		# желтый цвет знаков
+	BLUE='\033[94m'			#	${BLUE}			# синий цвет знаков
+	MAGENTA='\033[95m'		#	${MAGENTA}		# фиолетовый цвет знаков
+	CYAN='\033[96m'			#	${CYAN}			# цвет морской волны знаков
+	GRAY='\033[97m'			#	${GRAY}			# серый цвет знаков
+	
 	 
 	# Цветом текста (жирным) (bold) :
 	DEF='\033[39m'			#	${DEF}
-	DGRAY='\033[1;30m'		#	${DGRAY}
-	LRED='\033[1;31m'		#	${LRED}
-	LGREEN='\033[1;32m'		#	${LGREEN}
-	LYELLOW='\033[1;33m'		#	${LYELLOW}
-	LBLUE='\033[1;34m'		#	${LBLUE}
-	LMAGENTA='\033[1;35m'		#	${LMAGENTA}
-	LCYAN='\033[1;36m'		#	${LCYAN}
+	BGRAY='\033[1;30m'		#	${BGRAY}
+	BRED='\033[1;31m'		#	${BRED}
+	BGREEN='\033[1;32m'		#	${BGREEN}
+	BYELLOW='\033[1;33m'		#	${BYELLOW}
+	BBLUE='\033[1;34m'		#	${BBLUE}
+	BMAGENTA='\033[1;35m'		#	${BMAGENTA}
+	BCYAN='\033[1;36m'		#	${BCYAN}
 	WHITE='\033[1;37m'		#	${WHITE}
 	 
 	# Цвет фона
@@ -57,7 +68,36 @@
 
 
 	ESC=$(printf '\033')
-	RESET="${ESC}[0m"
+	RESET="${ESC}[0m"		#	${ESC}
 	
+	#ФУНКЦИИ
+	#Обычный цвет:
 	
-printGreen () { printf "${GREEN}%s${RESET}\n" "$1"; }
+	printBlack () { printf "${BLACK}%s${RESET}\n" "$1"; }
+	printRed () { printf "${RED}%s${RESET}\n" "$1"; }
+	printGreen () { printf "${GREEN}%s${RESET}\n" "$1"; }
+	printYellow () { printf "${YELLOW}%s${RESET}\n" "$1"; }
+	printBlue () { printf "${BLUE}%s${RESET}\n" "$1"; }
+	printMagenta () { printf "${MAGENTA}%s${RESET}\n" "$1"; }
+	printCyan () { printf "${CYAN}%s${RESET}\n" "$1"; }
+	printWhite () { printf "${WHITE}%s${RESET}\n" "$1"; }
+	
+	#Темный цвет:
+	
+	printBlack () { printf "${BLACK}%s${RESET}\n" "$1"; }
+	printRed () { printf "${RED}%s${RESET}\n" "$1"; }
+	printGreen () { printf "${GREEN}%s${RESET}\n" "$1"; }
+	printYellow () { printf "${YELLOW}%s${RESET}\n" "$1"; }
+	printBlue () { printf "${BLUE}%s${RESET}\n" "$1"; }
+	printMagenta () { printf "${MAGENTA}%s${RESET}\n" "$1"; }
+	printCyan () { printf "${CYAN}%s${RESET}\n" "$1"; }
+	printWhite () { printf "${WHITE}%s${RESET}\n" "$1"; }
+	
+	# Цветом текста (жирным) (bold):
+	
+	printBRed () { printf "${BRED}%s${RESET}\n" "$1"; }
+	printBGreen () { printf "${BGREEN}%s${RESET}\n" "$1"; }
+	printBYellow () { printf "${BYELLOW}%s${RESET}\n" "$1"; }
+	printBBlue () { printf "${BBLUE}%s${RESET}\n" "$1"; }
+	printBMagenta () { printf "${BMAGENTA}%s${RESET}\n" "$1"; }
+	printBCyan () { printf "${BCYAN}%s${RESET}\n" "$1"; }
