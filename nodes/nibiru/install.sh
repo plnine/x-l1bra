@@ -4,7 +4,7 @@
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
 printRed  ====================
-echo $(printRed '==') $(printBBlue 'NIBIRU'${NC}) $(printRed '==') $(printYellow '****') $(printRed '==')
+echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
 printRed  ====================
 echo
 	printGreen  ---------------------------------------
