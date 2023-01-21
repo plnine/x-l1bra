@@ -3,18 +3,16 @@
 #X-l1bra  
 	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
-printRed  ====================
-echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-printRed  ====================
+printnibiru
 echo
 mainmenu() {
     echo -ne "
 	1) Управление
 	2) Обновить
 	3) Установка
-	$(redprint     '4)') Удаление
-	$(yellowprint  '5)') Вернутся назад
-	$(yellowprint  '0)') Выйти
+	$(printRed     '4)') Удаление
+	$(printYellow  '5)') Вернутся назад
+	$(printYellow  '0)') Выйти
 	Введите цифру:  "
 	read -r ans
 	case $ans in
@@ -34,7 +32,7 @@ mainmenu() {
 		back
 		;;
 		0)
-		echo $(cyanprint '"Bye bye."')
+		echo $(printBCyan '"Bye bye."')
 		exit
 		;;
 		*)
