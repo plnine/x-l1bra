@@ -54,7 +54,7 @@ read -r -p "Введите имя ноды:" NODE_MONIKER
 
 printBCyan "Пожалуйста подождите........" && sleep 1
 printYellow "1. Oбновляем наш сервер........" && sleep 1
-	sudo apt update  > /dev/null 
+	sudo apt update > /dev/null 2>&1
 printGreen "Готово!" && sleep 1
 
 
