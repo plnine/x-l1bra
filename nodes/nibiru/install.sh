@@ -41,14 +41,11 @@ $(printCyan	'Введите цифру:') "
     esac
 }
 
-#FUNCTION
+
 no() { source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh) }
-yes(){ 
-clear 
-printLogo 
-printRed  =======================================================================
+yes() { clear && printLogo && printRed  =======================================================================
 read -r -p "Введите имя ноды:" NODE_MONIKER
-}
+
 
 printBCyan "Пожалуйста подождите........" && sleep 1
 	printYellow "1.  Oбновляем наш сервер........" && sleep 1
