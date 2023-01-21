@@ -2,57 +2,77 @@
 
 #X-l1bra  
 	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
-printLogo
-printRed  ====================
-echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-printRed  ====================
+printlogo
+printnibiru
 echo
 
 mainmenu() {
 	echo -ne "
 	1) Проверить баланс
 	2) Показать адрес кошелька
-	2) Добавить кошелек wallet
-	3) 
-	4) Проверить синхронизацию
-	5) Просмотреть логи
-	6) Вернутся назад
+	3) Добавить кошелек wallet
+	4) Восстановить кошелек
+	5) Создать валидатора
+	6) Узнать информацию о валидаторе
+	7) Проверить синхронизацию
+	8) Просмотреть логи
+	9) Вернутся назад
 $(yellowprint  '0) Выйти')
 $(cyanprint 'Введите цифру:')  "
-   read -r ans
-    case $ans in
-    1)
-        WalletBalance
-        ;;
-    2)
-        AddWallet
-        ;;
-    3)
-        AddWalletOrchestrator
-        ;;
-    4)
-        synced
-        ;;
-    5)  
-    	logs
-    	;;
-    6)
-        back
-        ;;
-    0)
-        echo $(cyanprint '"Bye bye."')
-        exit 
-        ;;
-    *)
-	clear
-	printLogo
-	printRed  =======================
-	echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
-	printRed  =======================
-	echo $(redprint 'Неверный запрос !')
-        mainmenu
-        ;;
-    esac
+	read -r ans
+	case $ans in
+		1)
+		WalletBalance
+		;;
+		
+		2)
+		ShowWallet
+		;;
+		
+		3)
+		AddWallet
+		;;
+		
+		4)
+		RecoveryWallet
+		
+		;;
+		
+		5)
+		CreateValidator
+		;;
+		
+		6)
+		InfoValidator
+		;;
+		
+		7)
+		synced
+		;;
+		
+		8)
+		logs
+		;;
+		
+		6)
+		back
+		;;
+		
+		0)
+		echo $(printBCyan '"Bye bye."')
+		exit 
+		;;
+		
+		*)
+		clear
+		printLogo
+		printRed  ====================
+		echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
+		printRed  ====================
+		echo $(printRed 'Неверный запрос !')
+		mainmenu
+		;;
+	esac
 }
 
 WalletBalance(){
@@ -92,7 +112,7 @@ printLogo
 printRed  =======================
 echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
 printRed  =======================
-curl -s localhost:26657/status | jq .result.sync_info.catching_up
+nibid status 2>&1 | jq .SyncInfo
 mainmenu
 }
 

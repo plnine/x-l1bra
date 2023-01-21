@@ -1,6 +1,10 @@
 
 
-
+function printnibiru (
+	printRed  ====================
+	echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
+	printRed  ====================
+}
 
 function printLogo {
   bash <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
