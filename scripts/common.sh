@@ -58,3 +58,4 @@ redprint() { printf "${RED}%s${RESET}\n" "$1"; }
 yellowprint() { printf "${YELLOW}%s${RESET}\n" "$1"; }
 magentaprint() { printf "${MAGENTA}%s${RESET}\n" "$1"; }
 cyanprint() { printf "${CYAN}%s${RESET}\n" "$1"; }
+yellowbprint() { printf "${YELLOWB}%s${RESET}\n" "$1"; }
