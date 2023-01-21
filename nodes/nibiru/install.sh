@@ -163,14 +163,14 @@ printGreen "Готово." && sleep 1
 
 
 printYellow "11. Подгружаем последний снапшот........"
-	curl -L https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.nibid
+#	curl -L https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.nibid
 printGreen "Готово."
 
 
 printYellow "11. Запускаем ноду........" && sleep 2
 	sudo systemctl start nibid
 printGreen "Готово!"
-
+printBCyan "УСТАНОВКА ЗАВЕРШЕНА"
 
 printRed  =============================================================================== 
 	echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
@@ -178,10 +178,11 @@ printRed  ======================================================================
 
 }
 
+submenu
 
 submenu(){
 echo -ne "
-$(printGreen    'Установка завершена.') $(printGreenBlink '!!!')
+$(printBGreen    'Установка завершена........') $(printBGreenBlink '!!!')
  		1) Просмотреть логи
  		2) Проверить синхронизацию
  		3) В меню
