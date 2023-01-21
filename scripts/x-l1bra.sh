@@ -11,7 +11,7 @@ $(printBCyan    'Выберите ноду !')
 $(printBMagenta    '1)') Celestia $(printBTYellow '*****')
 $(printBBlue       '2)') Nibiru $(printBTYellow '****')
 $(printBMagenta    '3)') DeFund $(printBTYellow '***')
-$(printBYellow     '4)') Shardiun $(printBTYellow '*****')
+$(printBYellow     '4)') Shardeum $(printBTYellow '*****')
 $(printBRed        '0)') Exit
 Введите цифру:  "
 	read -r ans
@@ -30,7 +30,7 @@ $(printBRed        '0)') Exit
 		;;
 		
 		4)
-		shardium
+		shardeum
 		;;
 		
 		0)
@@ -55,6 +55,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nib
 }
 
 defund(){
+#source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/defund/main.sh)
 clear
 printLogo
 printRed  =======================================================================
@@ -62,7 +63,7 @@ echo $(printBYellow "Coming soon !!!")
 mainmenu
 }
 
-shardium(){
+shardeum(){
 clear
 printLogo
 printRed  =======================================================================
