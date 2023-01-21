@@ -200,7 +200,7 @@ $(printBGreen    'Установка завершена........') $(printBGreenB
 		*)
 		source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
 		printRed  =======================================================================
-		echo $(redprint 'Неверный запрс !!!')
+		echo $(printBRed 'Неверный запрс !!!')
 		submenu
 		;;
 	esac
