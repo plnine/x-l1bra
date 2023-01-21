@@ -12,7 +12,7 @@ $(printBMagenta    '1)') Celestia $(printBTYellow *****)
 $(printBBlue       '2)') Nibiru $(printBTYellow ****)
 $(printBMagenta    '3)') DeFund $(printBTYellow ***)
 $(printBYellow     '4)') Shardiun $(printBTYellow *****)
-$(printBRed     '   0)') Exit
+$(printBRed        '0)') Exit
 Введите цифру:  "
 	read -r ans
 	case $ans in

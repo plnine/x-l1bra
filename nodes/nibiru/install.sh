@@ -3,9 +3,7 @@
 #X-l1bra
 	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
-printRed  ====================
-echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-printRed  ====================
+printnibiru
 echo
 	printGreen  ----------------------------------------
 echo $(printYellow 'Минимальные требования к оборудованию.')
