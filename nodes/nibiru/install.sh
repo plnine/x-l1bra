@@ -2,19 +2,15 @@
 
 #X-l1bra  
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/function.sh)
 printLogo
 printRed  ====================
 echo $(printGreen '==') $(blueprint 'NIBIRU') $(redprint '==') $(yellowprint '****') $(redprint '==')
-printBBlue  ====================
-printBlue  ====================
-echo $(printRed 'Минимальные требования к оборудованию.')
-
-echo $(cyanprint '4CPU 8RAM 100GB')
 printRed  ====================
-echo $(yellowprint 'Рекомендуемые требования к оборудованию.')
-
-echo $(cyanprint '8CPU 32RAM 200GB')
+echo $(printYellow 'Минимальные требования к оборудованию.')
+echo $(printBCyan '4CPU 8RAM 100GB')
+printRed  ====================
+echo $(printYellow 'Рекомендуемые требования к оборудованию.')
+echo $(printBCyan '8CPU 32RAM 200GB')
 printRed  ====================
 
 mainmenu() {    
