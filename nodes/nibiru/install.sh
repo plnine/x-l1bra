@@ -43,7 +43,10 @@ $(printCyan	'Введите цифру:') "
 
 #FUNCTION
 no() { source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh) }
-yes(){ clear && printLogo && printRed  =======================================================================
+yes(){ 
+clear 
+printLogo 
+printRed  =======================================================================
 read -r -p "Введите имя ноды:" NODE_MONIKER
 }
 
