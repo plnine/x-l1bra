@@ -1,10 +1,5 @@
 
 
-function printnibiru (
-	printRed  ====================
-	echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-	printRed  ====================
-}
 
 function printLogo {
   bash <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
@@ -123,3 +118,9 @@ function addToPath {
 	printMagentaBlink () { printf "${BLINK}${MAGENTA}%s${RESET}\n" "$1"; }
 	printCyanBlink () { printf "${BLINK}${CYAN}%s${RESET}\n" "$1"; }
 	printWhiteBlink () { printf "${BLINK}${WHITE}%s${RESET}\n" "$1"; }
+	
+function printnibiru (
+printRed  ====================
+echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
+printRed  ====================
+}
