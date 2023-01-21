@@ -16,63 +16,49 @@ echo $(printBCyan '8CPU 32RAM 200GB')
 	printGreen  ----------------------------------------
 
 mainmenu() {    
-    echo -ne "
-	$(printCyan    'Вы действительно хотите начать установку') $(printCyanBlink '???')
-	$(printGreen   '1) Да')
-	$(printRed     '2) Нет')
-	$(printCyan 'Введите цифру:') "
-   	read -r ans
-    		case $ans in
-    		1)
-       		 yes
-       		 ;;
-    		2)
-       		 no
-      		  ;;
-   		 *)
-        	clear
-	printLogo
-	printRed  ====================
-	echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-	printRed  ====================
-	echo $(redprint 'Неверный запрос !')
-        mainmenu
-        ;;
+	echo -ne "
+$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')
+ $(printGreen	'1) Да')
+ $(printRed	'2) Нет')
+$(printCyan	'Введите цифру:') "
+	read -r ans
+	case $ans in
+		1)
+		 yes
+		 ;;
+		2)
+		 no
+		  ;;
+		*)
+		clear
+		printLogo
+		printRed  ====================
+		echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
+		printRed  ====================
+		echo $(redprint 'Неверный запрос !')
+        	mainmenu
+        	;;
     esac
 }
-no(){
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
-}
 
-yes(){
-clear
-printLogo
-printRed  =======================================================================
-read -r -p "Enter node moniker:" NODE_MONIKER
+#FUNCTION
+no() { source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh) }
+yes(){ clear && printLogo && printRed  =======================================================================
+read -r -p "Введите имя ноды:" NODE_MONIKER
 
-printCyan "Please wait........" && sleep 1
 
-printYellow "1. Update........" && sleep 1
-#################################################
-sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
-#################################################
-printGreen "Updates uploaded." && sleep 1
+printCyan "Пожалуйста подождите........" && sleep 1
+	printYellow "1.  обновляем наш сервер........" && sleep 1
+		sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
 
-printYellow "2.Installing packages........" && sleep 1
-############printRed  =============================================================================== 
-echo -e "Check logs:                 sudo journalctl -u celestia-appd -f --no-hostname -o cat ${NC}"
-echo -e "Check synchronization:     ${CYAN} celestia-appd status 2>&1 | jq .SyncInfo.catching_up${NC}"
-echo -e "Add New Wallet:            ${CYAN} celestia-appd keys add wallet${NC}"
-echo -e "Add New Orchestrator:      ${CYAN} celestia-appd keys add orchestrator${NC}"
-echo -e "Recover Existing Wallet:   ${CYAN} celestia-appd keys add wallet --recover${NC}"
-echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
-printRed  =============================================================================== #####################################
-sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
-#################################################
-printGreen "Installation completed." && sleep 1
 
-printYellow "5.Set variables........" && sleep 1
-#################################################
+printGreen "Готово." && sleep 1
+	printYellow "2.Устанавливаем дополнительные пакеты........" && sleep 1
+		sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
+printGreen "Установка пакетов завершена." && sleep 1
+
+
+printYellow "5. variables........" && sleep 1
 CHAIN_ID="mocha"
 CHAIN_DENOM="utia"
 BINARY_NAME="celestia-appd"
