@@ -19,7 +19,7 @@ echo $(printBCyan '8CPU 32RAM 200GB')
 
 mainmenu() {    
     echo -ne "
-$(    'Вы действительно хотите начать установку !')
+$(printCyanBlink    'Вы действительно хотите начать установку !')
 $(greenprint   '1) Да')
 $(redprint     '2) Нет')
 $(cyanprint 'Введите цифру:') "
