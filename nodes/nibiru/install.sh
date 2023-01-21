@@ -4,18 +4,22 @@
 clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
 printRed  ====================
-echo $(printGreen '==') $(blueprint 'NIBIRU') $(redprint '==') $(yellowprint '****') $(redprint '==')
+echo $(printRed '==') $(printBBlue 'NIBIRU'${NC}) $(printRed '==') $(printYellow '****') $(printRed '==')
 printRed  ====================
+echo
+	printGreen  ---------------------------------------
 echo $(printYellow 'Минимальные требования к оборудованию.')
 echo $(printBCyan '4CPU 8RAM 100GB')
-printRed  ====================
+	printGreen  ---------------------------------------
+echo
+	printGreen  ---------------------------------------
 echo $(printYellow 'Рекомендуемые требования к оборудованию.')
 echo $(printBCyan '8CPU 32RAM 200GB')
-printRed  ====================
+	printGreen  ---------------------------------------
 
 mainmenu() {    
     echo -ne "
-$(cyanprint    'Вы действительно хотите начать установку !')
+$(    'Вы действительно хотите начать установку !')
 $(greenprint   '1) Да')
 $(redprint     '2) Нет')
 $(cyanprint 'Введите цифру:') "
@@ -59,7 +63,7 @@ printGreen "Updates uploaded." && sleep 1
 
 printYellow "2.Installing packages........" && sleep 1
 ############printRed  =============================================================================== 
-echo -e "Check logs:                ${CYAN} sudo journalctl -u celestia-appd -f --no-hostname -o cat ${NC}"
+echo -e "Check logs:                 sudo journalctl -u celestia-appd -f --no-hostname -o cat ${NC}"
 echo -e "Check synchronization:     ${CYAN} celestia-appd status 2>&1 | jq .SyncInfo.catching_up${NC}"
 echo -e "Add New Wallet:            ${CYAN} celestia-appd keys add wallet${NC}"
 echo -e "Add New Orchestrator:      ${CYAN} celestia-appd keys add orchestrator${NC}"

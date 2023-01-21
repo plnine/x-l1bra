@@ -110,3 +110,12 @@ function addToPath {
 	printBBlue () { printf "${BBLUE}%s${RESET}\n" "$1"; }
 	printBMagenta () { printf "${BMAGENTA}%s${RESET}\n" "$1"; }
 	printBCyan () { printf "${BCYAN}%s${RESET}\n" "$1"; }
+	
+
+	printRedBlink () { printf "${RED}%s${RESET}\n" "$1"; }
+	printGreenBlink () { printf "${GREEN}%s${RESET}\n" "$1"; }
+	printYellowBlink () { printf "${YELLOW}%s${RESET}\n" "$1"; }
+	printBlueBlink () { printf "${BLUE}%s${RESET}\n" "$1"; }
+	printMagentaBlink () { printf "${MAGENTA}%s${RESET}\n" "$1"; }
+	printCyanBlink () { printf "${CYAN}%s${RESET}\n" "$1"; }
+	printWhiteBlink () { printf "${WHITE}%s${RESET}\n" "$1"; }
