@@ -1,43 +1,40 @@
 #! /bin/bash
 
 #X-l1bra  
-clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
+	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
 printRed  ====================
 echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
 printRed  ====================
 echo
-	printGreen  ---------------------------------------
+	printGreen  ----------------------------------------
 echo $(printYellow 'Минимальные требования к оборудованию.')
 echo $(printBCyan '4CPU 8RAM 100GB')
-	printGreen  ---------------------------------------
-echo
-	printGreen  ---------------------------------------
+	printGreen  ----------------------------------------
 echo $(printYellow 'Рекомендуемые требования к оборудованию.')
 echo $(printBCyan '8CPU 32RAM 200GB')
-	printGreen  ---------------------------------------
+	printGreen  ----------------------------------------
 
 mainmenu() {    
     echo -ne "
-$(printCyanBlink    'Вы действительно хотите начать установку !')
-$(greenprint   '1) Да')
-$(redprint     '2) Нет')
-$(cyanprint 'Введите цифру:') "
-   read -r ans
-    case $ans in
-    1)
-        yes
-        ;;
-    2)
-        no
-        ;;
-   
-    *)
-        clear
+	$(printCyan    'Вы действительно хотите начать установку') $(printCyanBlink '???')
+	$(printGreen   '1) Да')
+	$(printRed     '2) Нет')
+	$(printCyan 'Введите цифру:') "
+   	read -r ans
+    		case $ans in
+    		1)
+       		 yes
+       		 ;;
+    		2)
+       		 no
+      		  ;;
+   		 *)
+        	clear
 	printLogo
-	printRed  =======================
-	echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
-	printRed  =======================
+	printRed  ====================
+	echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
+	printRed  ====================
 	echo $(redprint 'Неверный запрос !')
         mainmenu
         ;;
