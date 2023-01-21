@@ -1,6 +1,6 @@
-#! /bin/bash
+#!/bin/bash
 
-#X-l1bra  
+#X-l1bra
 	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
 printRed  ====================
@@ -15,7 +15,7 @@ echo $(printYellow 'Рекомендуемые требования к обор�
 echo $(printBCyan '8CPU 32RAM 200GB')
 	printGreen  ----------------------------------------
 
-mainmenu() {    
+mainmenu() {
 	echo -ne "
 $(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')
  $(printGreen	'1) Да')
@@ -24,11 +24,11 @@ $(printCyan	'Введите цифру:') "
 	read -r ans
 	case $ans in
 		1)
-		 yes
-		 ;;
+		yes
+		;;
 		2)
-		 no
-		  ;;
+		no
+		;;
 		*)
 		clear
 		printLogo
@@ -42,40 +42,45 @@ $(printCyan	'Введите цифру:') "
 }
 
 
-no() { source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh) }
-yes() { clear && printLogo && printRed  =======================================================================
+no(){
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh)
+}
+yes(){
+clear
+printLogo
+printRed  =======================================================================
 read -r -p "Введите имя ноды:" NODE_MONIKER
 
 
 printBCyan "Пожалуйста подождите........" && sleep 1
-	printYellow "1.  Oбновляем наш сервер........" && sleep 1
-		sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
-
-
+printYellow "1.  Oбновляем наш сервер........" && sleep 1
+	sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
 printGreen "Готово." && sleep 1
-	printYellow "2.Устанавливаем дополнительные пакеты........" && sleep 1
-		sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
+
+
+printYellow "2.Устанавливаем дополнительные пакеты........" && sleep 1
+	sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
 printGreen "Готово." && sleep 1
 
 
 printYellow "3. Задаем переменные........" && sleep 1
-		CHAIN_ID="nibiru-testnet-2"
-		CHAIN_DENOM="unibi"
-		BINARY_NAME="nibid"
-		BINARY_VERSION_TAG="v0.16.3"
-		IDENTITY="8F3C23EC3306B513"
-		echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
-		echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
-		echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
-		echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
-		echo -e "IDENTITY:           ${CYAN}$IDENTITY${NC}"
+	CHAIN_ID="nibiru-testnet-2"
+	CHAIN_DENOM="unibi"
+	BINARY_NAME="nibid"
+	BINARY_VERSION_TAG="v0.16.3"
+	IDENTITY="8F3C23EC3306B513"
+	echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
+	echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
+	echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
+	echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
+	echo -e "IDENTITY:           ${CYAN}$IDENTITY${NC}"
 printGreen "Готово." && sleep 1
 
 
 printYellow "4.Устанавливаем go........" && sleep 1
 	if ! [ -x "$(command -v go)" ]; then
-		source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/go/go_1.19.4.sh)
-		source .bash_profile
+	source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/go/go_1.19.4.sh)
+	source .bash_profile
 	fi
 	echo "$(go version)"
 printGreen "Готово." && sleep 1
@@ -109,7 +114,7 @@ printGreen "Готово." && sleep 1
 
 
 printYellow "8.Настраиваем прунинг........" && sleep 1
-PRUNING_INTERVAL=$(shuf -n1 -e 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97)
+	PRUNING_INTERVAL=$(shuf -n1 -e 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97)
 	sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.nibid/config/app.toml
 	sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.nibid/config/app.toml
 	sed -i 's|^pruning-interval *=.*|pruning-interval = "'$PRUNING_INTERVAL'"|g' $HOME/.nibid/config/app.toml
@@ -145,8 +150,8 @@ printYellow "10.Сбрасываем данные........"
 printGreen "Готово." && sleep 1
 
 printYellow "11.Подгружаем снапшот........"
-SNAP_NAME=$(curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/ | egrep -o ">mocha.*\.tar.lz4" | tr -d ">")
-curl https://snapshots3-testnet.nodejumper.io/celestia-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
+	SNAP_NAME=$(curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/ | egrep -o ">mocha.*\.tar.lz4" | tr -d ">")
+	curl https://snapshots3-testnet.nodejumper.io/celestia-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
 printGreen "Готово."
 
 printYellow "11.Запускаем ноду........" && sleep 1
@@ -157,7 +162,7 @@ printGreen "Готово."
 
 
 printRed  =============================================================================== 
-echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
+	echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
 printRed  =============================================================================== 
 
 }
@@ -172,14 +177,14 @@ $(printGreen    'Установка завершена.') $(printGreenBlink '!!!
 Нажмите Enter:  "
    read -r ans
     case $ans in
-        1) 
+        1)
         subsubmenu
         ;;
-        2) 
+        2)
         curl -s localhost:26657/status | jq .result.sync_info.catching_up
         submenu
         ;;
-        3) 
+        3)
         source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh)
         ;;
         *)
@@ -204,6 +209,5 @@ $(printBCyan 'Для продолжения нажмите Enter:')  "
 		;;
 	esac
 }
-
 
 mainmenu

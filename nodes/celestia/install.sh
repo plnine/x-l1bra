@@ -1,17 +1,18 @@
 #! /bin/bash
 
 #X-l1bra  
+	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 clear
 printLogo
 printRed  =======================
-echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+echo $(printRed '==') $(printCyan 'CELESTIA') $(printRed '==') $(printYellow '*****') $(printRed '==')
 printRed  =======================
 mainmenu() {    
     echo -ne "
-$(cyanprint    'Вы действительно хотите начать установку !')
-$(greenprint   '1) Да')
-$(redprint     '2) Нет')
-$(cyanprint 'Введите цифру:') "
+$(printCyan    'Вы действительно хотите начать установку !')
+$(printGreen   '1) Да')
+$(printRed     '2) Нет')
+$(printCyan 'Введите цифру:') "
    read -r ans
     case $ans in
     1)
@@ -25,9 +26,9 @@ $(cyanprint 'Введите цифру:') "
         clear
 	printLogo
 	printRed  =======================
-	echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
+	echo $(printRed '==') $(printCyan 'CELESTIA') $(printRed '==') $(printYellow '*****') $(printRed '==')
 	printRed  =======================
-	echo $(redprint 'Неверный запрос !')
+	echo $(printRed 'Неверный запрос !')
         mainmenu
         ;;
     esac
@@ -166,7 +167,7 @@ printRed  ======================================================================
 
 submenu(){
 echo -ne "
-$(greenprint    'Установка завершена.')
+$(printGreen    'Установка завершена.')
 		1) Просмотреть логи
 		2) Проверить синхронизацию
 		3) В меню
@@ -194,7 +195,7 @@ $(greenprint    'Установка завершена.')
 
 subsubmenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'CTRL+Z') $(yellowprint '!!!')
+$(printYellow    'Для того что бы остановить журнал логов надо нажать') $(printCyan 'CTRL+Z') $(printYellow '!!!')
 
 Для продолжения нажмите Enter:  "
    read -r ans
