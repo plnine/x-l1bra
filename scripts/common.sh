@@ -40,6 +40,7 @@ function addToPath {
 	TMAGENTA='\033[35m'		#	${MAGENTA}		# фиолетовый цвет знаков
 	TCYAN='\033[36m'		#	${CYAN}			# цвет морской волны знаков
 	TGRAY='\033[37m'		#	${GRAY}			# серый цвет знаков
+	TBYELLOW='\033[1;33m'		#	${YELLOW}		# желтый цвет знаков
 	
 	# Цвет текста яркий:
 	BLACK='\033[30m'		#	${BLACK}		# чёрный цвет знаков
@@ -120,6 +121,8 @@ function addToPath {
 	printWhiteBlink () { printf "${BLINK}${WHITE}%s${RESET}\n" "$1"; }
 	
 	printBRedBlink () { printf "${BLINK}${BRED}%s${RESET}\n" "$1"; }
+	printBGreenBlink () { printf "${BLINK}${BGREEN}%s${RESET}\n" "$1"; }
+	printBTYellow () { printf "${TBYELLOW}%s${RESET}\n" "$1"; }
 
 function printnibiru {
 printRed  ====================

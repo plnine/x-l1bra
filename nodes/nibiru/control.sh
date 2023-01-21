@@ -8,15 +8,15 @@ echo
 
 mainmenu() {
 	echo -ne "
-	1) Проверить баланс
-	2) Показать адрес кошелька
-	3) Добавить кошелек wallet
-	4) Восстановить кошелек
-	5) Создать валидатора
-	6) Узнать информацию о валидаторе
-	7) Проверить синхронизацию
-	8) Просмотреть логи
-	9) Вернутся назад
+1) Проверить баланс
+2) Показать адрес кошелька
+3) Добавить кошелек wallet
+4) Восстановить кошелек
+5) Создать валидатора
+6) Узнать информацию о валидаторе
+7) Проверить синхронизацию
+8) Просмотреть логи
+9) Вернутся назад
 $(printYellow  '0) Выйти')
 $(printCyan 'Введите цифру:')  "
 	read -r ans
@@ -89,7 +89,7 @@ AddWallet(){
 clear && printLogo && printnibiru
 nibid keys add wallet
 printRed         ============================================
-echo $(printBRed '== ОБЯЗАТЕЛЬНО СОХРАНИТЕ МНЕМОНИК ФРАЗУ ==') $(printBRedBlink '!!!!!!')
+echo $(printBRed '== ОБЯЗАТЕЛЬНО СОХРАНИТЕ МНЕМОНИК ФРАЗУ ==') $(printBRedBlink '!!!')
 printRed         ============================================
 mainmenu
 }
@@ -103,13 +103,19 @@ mainmenu
 CreateValidator(){
 clear && printLogo && printnibiru
 nibid tx staking create-validator --amount 1000000unibi --commission-max-change-rate "0.1" --commission-max-rate "0.20" --commission-rate "0.1" --min-self-delegation "1" --pubkey=$(nibid tendermint show-validator) --moniker X-l1bra --chain-id nibiru-testnet-2 --gas-prices 0.025unibi --from wallet
-
-echo -ne " $(printBRed 'Вы должны позаботится забэкапить priv_validator_key.json.
+echo
+echo -ne "$(printBRed 'Вы должны позаботится забэкапить priv_validator_key.json.
 Без него вы не сможете востановить валидатора.
-Он находится в папке .nibid/config ') $(printBRedBlink '!!!!!!') "
+Он находится в папке .nibid/config ') $(printBRedBlink '!!!') "
+echo
 mainmenu
 }
 
+InfoValidator(){
+clear && printLogo && printnibiru
+nibid q staking validator $(nibid keys show wallet --bech val -a)
+mainmenu
+}
 
 synced(){
 clear && printLogo && printnibiru
@@ -127,7 +133,7 @@ source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nib
 
 submenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(printBCyan 'CTRL+Z') $(yellowprint '!!!')
+$(printYellow    'Для того что бы остановить журнал логов надо нажать') $(printBCyan 'CTRL+Z') $(printYellow '!!!')
 
 Для продолжения нажмите Enter:  "
 	read -r ans
