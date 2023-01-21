@@ -58,7 +58,7 @@ printGreen "Готово." && sleep 1
 printGreen "Готово." && sleep 1
 
 
-printYellow "5. Задаем переменные........" && sleep 1
+printYellow "3. Задаем переменные........" && sleep 1
 		HAIN_ID="mocha"
 		CHAIN_DENOM="utia"
 		BINARY_NAME="celestia-appd"
@@ -72,92 +72,100 @@ printYellow "5. Задаем переменные........" && sleep 1
 printGreen "Готово." && sleep 1
 
 
-printYellow "3.Устанавливаем go........" && sleep 1
+printYellow "4.Устанавливаем go........" && sleep 1
 	if ! [ -x "$(command -v go)" ]; then
-		source <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-scripts/master/utils/go_install.sh")
+		source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/go/go_1.19.4.sh)
 		source .bash_profile
 	fi
 	echo "$(go version)"
 printGreen "Готово." && sleep 1
 
-printYellow "4.Download and install binary........"
-#################################################
-cd $HOME || return
-rm -rf celestia-app
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app || return
-git checkout v0.11.0
-make install
-celestia-appd version # 0.11.0
 
-printYellow "6.Initialize the node........" && sleep 1
-#################################################
-celestia-appd config keyring-backend test
-celestia-appd config chain-id $CHAIN_ID
-celestia-appd init "$NODE_MONIKER" --chain-id $CHAIN_ID
+printYellow "5.Скачиваем и устанавливаем бинарник........"
+	cd || return
+	rm -rf nibiru
+	git clone https://github.com/NibiruChain/nibiru
+	cd nibiru || return
+	git checkout v0.16.3
+	make install
+	nibid version # v0.16.3
+printGreen "Готово." && sleep 1
 
-curl -s https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/genesis.json > $HOME/.celestia-app/config/genesis.json
-curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/addrbook.json > $HOME/.celestia-app/config/addrbook.json
-#################################################
-printGreen "Completed." && sleep 1
 
-printYellow "7.Adding seeds and peers........" && sleep 1
-#################################################
-SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/seeds.txt | tr -d '\n')
-PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/peers.txt | tr -d '\n')
-sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
-#################################################
-printGreen "Completed." && sleep 1
+printYellow "6.Инициализируем ноду........" && sleep 1
+	nibid config keyring-backend test
+	nibid config chain-id $CHAIN_ID
+	nibid init "$NODE_MONIKER" --chain-id $CHAIN_ID
+printGreen "Готово." && sleep 1
 
-printYellow "8.Setting up pruning........" && sleep 1
-#################################################
+
+printYellow "7.Добавляем сиды и пиры........" && sleep 1
+	curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
+	curl -s https://snapshots3-testnet.nodejumper.io/nibiru-testnet/addrbook.json > $HOME/.nibid/config/addrbook.json
+	SEEDS="dabcc13d6274f4dd86fd757c5c4a632f5062f817@seed-2.nibiru-testnet-2.nibiru.fi:26656,a5383b33a6086083a179f6de3c51434c5d81c69d@seed-1.nibiru-testnet-2.nibiru.fi:26656"
+	PEERS=""
+	sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.nibid/config/config.toml
+printGreen "Готово." && sleep 1
+
+
+printYellow "8.Настраиваем прунинг........" && sleep 1
 PRUNING_INTERVAL=$(shuf -n1 -e 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97)
-sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^pruning-interval *=.*|pruning-interval = "'$PRUNING_INTERVAL'"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^snapshot-interval *=.*|snapshot-interval = 2000|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.nibid/config/app.toml
+	sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.nibid/config/app.toml
+	sed -i 's|^pruning-interval *=.*|pruning-interval = "'$PRUNING_INTERVAL'"|g' $HOME/.nibid/config/app.toml
+	sed -i 's|^snapshot-interval *=.*|snapshot-interval = 2000|g' $HOME/.nibid/config/app.toml
+printGreen "Готово." && sleep 1
 
-sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001utia"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.celestia-app/config/config.toml
-#################################################
-printGreen "Completed." && sleep 1
 
-printYellow "9.Create a service file........" && sleep 1
-#################################################
-sudo tee /etc/systemd/system/celestia-appd.service > /dev/null << EOF
-[Unit]
-Description=Celestia Validator Node
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which celestia-appd) start
-Restart=on-failure
-RestartSec=10
-LimitNOFILE=10000
-[Install]
-WantedBy=multi-user.target
-EOF
-#################################################
-printGreen "Completed." && sleep 1
+printYellow "9.Задаем минимальную цену за gas........" && sleep 1
+	sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001unibi"|g' $HOME/.nibid/config/app.toml
+	sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.nibid/config/config.toml
+printGreen "Готово." && sleep 1
 
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app --keep-addr-book
 
+printYellow "10.Создаем сервис файл........" && sleep 1
+	sudo tee /etc/systemd/system/nibid.service > /dev/null << EOF
+	[Unit]
+	Description=Nibiru Node
+	After=network-online.target
+	[Service]
+	User=$USER
+	ExecStart=$(which nibid) start
+	Restart=on-failure
+	RestartSec=10
+	LimitNOFILE=10000
+	[Install]
+	WantedBy=multi-user.target
+	EOF
+printGreen "Готово." && sleep 1
+
+
+printYellow "10.Сбрасываем данные........"
+	nibid tendermint unsafe-reset-all --home $HOME/.nibid --keep-addr-book
+printGreen "Готово." && sleep 1
+
+printYellow "11.Подгружаем снапшот........"
 SNAP_NAME=$(curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/ | egrep -o ">mocha.*\.tar.lz4" | tr -d ">")
 curl https://snapshots3-testnet.nodejumper.io/celestia-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
+printGreen "Готово."
 
-sudo systemctl daemon-reload
-sudo systemctl enable celestia-appd
-sudo systemctl start celestia-appd
+printYellow "11.Запускаем ноду........" && sleep 1
+	sudo systemctl daemon-reload
+	sudo systemctl enable celestia-appd
+	sudo systemctl start celestia-appd
+printGreen "Готово."
+
 
 printRed  =============================================================================== 
-echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
+echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
 printRed  =============================================================================== 
 
 }
 
+
 submenu(){
 echo -ne "
-$(greenprint    'Установка завершена.')
+$(printGreen    'Установка завершена.') $(printGreenBlink '!!!')
 		1) Просмотреть логи
 		2) Проверить синхронизацию
 		3) В меню
@@ -172,7 +180,7 @@ $(greenprint    'Установка завершена.')
         submenu
         ;;
         3) 
-        source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
+        source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh)
         ;;
         *)
         source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
@@ -185,17 +193,16 @@ $(greenprint    'Установка завершена.')
 
 subsubmenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'CTRL+Z') $(yellowprint '!!!')
+$(printYellow    'Для того что бы остановить журнал логов надо нажать') $(printBCyan 'CTRL+Z') $(printYellow '!!!')
 
-Для продолжения нажмите Enter:  "
-   read -r ans
-    case $ans in
-   
-    *)
-        sudo journalctl -u celestia-appd -f --no-hostname -o cat
-        submenu
-        ;;
-    esac
+$(printBCyan 'Для продолжения нажмите Enter:')  "
+	read -r ans
+	case $ans in
+		*)
+		sudo journalctl -u nibid -f --no-hostname -o cat
+		submenu
+		;;
+	esac
 }
 
 
