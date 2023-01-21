@@ -48,7 +48,7 @@ function addToPath {
 
 ESC=$(printf '\033') RESET="${ESC}[0m" BLACK="${ESC}[30m" RED="${ESC}[91m"
 GREEN="${ESC}[92m" YELLOW="${ESC}[93m" BLUE="${ESC}[94m" MAGENTA="${ESC}[95m"
-CYAN="${ESC}[96m" WHITE="${ESC}[97m" DEFAULT="${ESC}[39m"
+CYAN="${ESC}[96m" WHITE="${ESC}[97m" DEFAULT="${ESC}[39m" YELLOWB="${ESC}\033[1m[93m"
 
 
 
