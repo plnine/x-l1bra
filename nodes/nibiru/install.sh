@@ -79,7 +79,7 @@ printGreen "Готово." && sleep 1
 
 printYellow "4.Устанавливаем go........" && sleep 1
 	if ! [ -x "$(command -v go)" ]; then
-	source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/go/go_1.19.4.sh)
+	source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/go/go_1.19.4.sh) > /dev/null 2>&1
 	source .bash_profile
 	fi
 	echo "$(go version)"
@@ -149,6 +149,7 @@ printYellow "10.Сбрасываем данные........"
 	nibid tendermint unsafe-reset-all --home $HOME/.nibid --keep-addr-book
 printGreen "Готово." && sleep 1
 
+
 printYellow "11.Подгружаем снапшот........"
 	SNAP_RPC="https://nibiru-testnet.nodejumper.io:443"
 
@@ -166,10 +167,11 @@ printYellow "11.Подгружаем снапшот........"
 	curl https://snapshots3-testnet.nodejumper.io/nibiru-testnet/wasm.lz4 | lz4 -dc - | tar -xf - -C $HOME/.nibid/data
 printGreen "Готово."
 
+
 printYellow "11.Запускаем ноду........" && sleep 1
 	sudo systemctl daemon-reload
-	sudo systemctl enable celestia-appd
-	sudo systemctl start celestia-appd
+	sudo systemctl enable nibid
+	sudo systemctl start nibid
 printGreen "Готово."
 
 
