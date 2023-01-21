@@ -120,8 +120,3 @@ function addToPath {
 	printWhiteBlink () { printf "${BLINK}${WHITE}%s${RESET}\n" "$1"; }
 	
 
-function printnibiru (
-printRed  ====================
-echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-printRed  ====================
-}
