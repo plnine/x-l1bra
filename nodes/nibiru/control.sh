@@ -17,8 +17,8 @@ mainmenu() {
 	7) Проверить синхронизацию
 	8) Просмотреть логи
 	9) Вернутся назад
-$(yellowprint  '0) Выйти')
-$(cyanprint 'Введите цифру:')  "
+$(printYellow  '0) Выйти')
+$(printCyan 'Введите цифру:')  "
 	read -r ans
 	case $ans in
 		1)
@@ -66,9 +66,7 @@ $(cyanprint 'Введите цифру:')  "
 		*)
 		clear
 		printLogo
-		printRed  ====================
-		echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-		printRed  ====================
+		printnibiru
 		echo $(printRed 'Неверный запрос !')
 		mainmenu
 		;;
@@ -76,42 +74,45 @@ $(cyanprint 'Введите цифру:')  "
 }
 
 WalletBalance(){
-celestia-appd q bank balances $(celestia-appd keys show wallet -a)
+clear && printLogo && printnibiru
+nibid q bank balances $(nibid keys show wallet -a)
+mainmenu
+}
+
+ShowWallet(){
+clear && printLogo && printnibiru
+nibid keys list
 mainmenu
 }
 
 AddWallet(){
-clear
-printLogo
-printRed  =======================
-echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
-printRed  =======================
-celestia-appd keys add wallet
+clear && printLogo && printnibiru
+nibid keys add wallet
 printRed         ============================================
-echo $(redprint '== ОБЯЗАТЕЛЬНО СОХРАНИТЕ СИД ФРАЗУ !!!!!! ==')
+echo $(printBRed '== ОБЯЗАТЕЛЬНО СОХРАНИТЕ МНЕМОНИК ФРАЗУ ==') $(printBRedBlink '!!!!!!')
 printRed         ============================================
 mainmenu
 }
 
-AddWalletOrchestrator(){
-clear
-printLogo
-printRed  =======================
-echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
-printRed  =======================
-celestia-appd keys add orchestrator
-printRed         ============================================
-echo $(redprint '== ОБЯЗАТЕЛЬНО СОХРАНИТЕ СИД ФРАЗУ !!!!!! ==')
-printRed         ============================================
+RecoveryWallet(){
+clear && printLogo && printnibiru
+nibid keys add wallet --recover
 mainmenu
 }
+
+CreateValidator(){
+clear && printLogo && printnibiru
+nibid tx staking create-validator --amount 1000000unibi --commission-max-change-rate "0.1" --commission-max-rate "0.20" --commission-rate "0.1" --min-self-delegation "1" --pubkey=$(nibid tendermint show-validator) --moniker X-l1bra --chain-id nibiru-testnet-2 --gas-prices 0.025unibi --from wallet
+
+echo -ne " $(printBRed 'Вы должны позаботится забэкапить priv_validator_key.json.
+Без него вы не сможете востановить валидатора.
+Он находится в папке .nibid/config ') $(printBRedBlink '!!!!!!') "
+mainmenu
+}
+
 
 synced(){
-clear
-printLogo
-printRed  =======================
-echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
-printRed  =======================
+clear && printLogo && printnibiru
 nibid status 2>&1 | jq .SyncInfo
 mainmenu
 }
@@ -121,22 +122,21 @@ submenu
 }
 
 back(){
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
+source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/nibiru/main.sh)
 }
 
 submenu(){
     echo -ne "
-$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(cyanprint 'CTRL+Z') $(yellowprint '!!!')
+$(yellowprint    'Для того что бы остановить журнал логов надо нажать') $(printBCyan 'CTRL+Z') $(yellowprint '!!!')
 
 Для продолжения нажмите Enter:  "
-   read -r ans
-    case $ans in
-   
-    *)
-        sudo journalctl -u celestia-appd -f --no-hostname -o cat
-        mainmenu
-        ;;
-    esac
+	read -r ans
+	case $ans in
+		*)
+		sudo journalctl -u nibid -f --no-hostname -o cat
+		mainmenu
+		;;
+	esac
 }
 
 
