@@ -47,7 +47,7 @@ yes(){
 clear
 printLogo
 printRed  =======================================================================
-read -r -p "Введите имя ноды:" NODE_MONIKER
+# read -r -p "Введите имя ноды:" NODE_MONIKER
 
 
 printBCyan "Пожалуйста подождите........" && sleep 1
@@ -62,13 +62,14 @@ printGreen "Готово!" && sleep 1
 
 
 printYellow "3. Задаем переменные........" && sleep 1
+	MONIKER=X-l1bra
 	CHAIN_ID="nibiru-testnet-2"
 	CHAIN_DENOM="unibi"
 	BINARY_NAME="nibid"
 	BINARY_VERSION_TAG="v0.16.3"
 	IDENTITY="8F3C23EC3306B513"
 	source $HOME/.bash_profile > /dev/null 2>&1
-	echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
+	echo -e "Node moniker:       ${CYAN}$MONIKER${NC}"
 	echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
 	echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
 	echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
@@ -161,7 +162,7 @@ printGreen "Готово." && sleep 1
 
 
 printYellow "11. Подгружаем последний снапшот........"
-#	curl -L https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.nibid
+curl -L https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.nibid
 printGreen "Готово."
 
 
@@ -186,7 +187,7 @@ $(printBGreen    'Установка завершена........') $(printBGreenB
  		1) Просмотреть логи
  		2) Проверить синхронизацию
  		3) В меню
-Нажмите Enter:  "
+$(printBCyan 'Нажмите Enter:')  "
 	read -r ans
 	case $ans in
 		1)
