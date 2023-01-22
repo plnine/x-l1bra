@@ -132,6 +132,6 @@ printRed  ====================
 
 function printcelestia {
 printRed  =======================
-echo $(printRed '==') $(printBCyan 'CELESTIA') $(printRed '==') $(printBYellow '*****') $(printRed '==')
+echo $(printRed '==') $(printBMagenta 'CELESTIA') $(printRed '==') $(printBYellow '*****') $(printRed '==')
 printRed  =======================
 }

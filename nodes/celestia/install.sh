@@ -4,35 +4,31 @@
 	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 clear
 printLogo
-printRed  =======================
-echo $(printRed '==') $(printCyan 'CELESTIA') $(printRed '==') $(printYellow '*****') $(printRed '==')
-printRed  =======================
-mainmenu() {    
-    echo -ne "
-$(printCyan    'Вы действительно хотите начать установку !')
-$(printGreen   '1) Да')
-$(printRed     '2) Нет')
-$(printCyan 'Введите цифру:') "
-   read -r ans
-    case $ans in
-    1)
-        yes
-        ;;
-    2)
-        no
-        ;;
-   
-    *)
-        clear
-	printLogo
-	printRed  =======================
-	echo $(printRed '==') $(printCyan 'CELESTIA') $(printRed '==') $(printYellow '*****') $(printRed '==')
-	printRed  =======================
-	echo $(printRed 'Неверный запрос !')
-        mainmenu
-        ;;
+printcelestia
+mainmenu() {
+	echo -ne "
+$(printCyan	'Вы действительно хотите начать установку') $(printCyanBlink '???')
+ $(printGreen	'1) Да')
+ $(printRed	'2) Нет')
+$(printCyan	'Введите цифру:') "
+	read -r ans
+	case $ans in
+		1)
+		yes
+		;;
+		2)
+		no
+		;;
+		*)
+		clear
+		printLogo
+		printcelestia
+		echo $(printRed 'Неверный запрос !')
+        	mainmenu
+        	;;
     esac
 }
+
 no(){
 source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
 }
