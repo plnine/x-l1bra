@@ -72,49 +72,43 @@ printGreen "Готово!" && sleep 1
 
 
 printYellow "5. Скачиваем и устанавливаем бинарник........"
-#################################################
-cd $HOME || return
-rm -rf celestia-app
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app || return
-git checkout v0.11.0
-make install
-celestia-appd version # 0.11.0
+	cd $HOME || return
+	rm -rf celestia-app
+	git clone https://github.com/celestiaorg/celestia-app.git
+	cd celestia-app || return
+	git checkout v0.11.0
+	make install
+	celestia-appd version # 0.11.0
+printGreen "Готово!" && sleep 1
 
-printYellow "6.Initialize the node........" && sleep 1
-#################################################
-celestia-appd config keyring-backend test
-celestia-appd config chain-id $CHAIN_ID
-celestia-appd init "$NODE_MONIKER" --chain-id $CHAIN_ID
 
-curl -s https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/genesis.json > $HOME/.celestia-app/config/genesis.json
-curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/addrbook.json > $HOME/.celestia-app/config/addrbook.json
-#################################################
-printGreen "Completed." && sleep 1
+printYellow "6. Инициализируем ноду........" && sleep 1
+	celestia-appd config keyring-backend test
+	celestia-appd config chain-id $CHAIN_ID
+	celestia-appd init "$MONIKER" --chain-id $CHAIN_ID
+	curl -s https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/genesis.json > $HOME/.celestia-app/config/genesis.json
+	curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/addrbook.json > $HOME/.celestia-app/config/addrbook.json
+printGreen "Готово!" && sleep 1
 
-printYellow "7.Adding seeds and peers........" && sleep 1
-#################################################
+
+printYellow "7. Добавляем сиды и пиры........" && sleep 1
 SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/seeds.txt | tr -d '\n')
 PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/peers.txt | tr -d '\n')
-sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
-#################################################
-printGreen "Completed." && sleep 1
+	sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
+printGreen "Готово!" && sleep 1
 
-printYellow "8.Setting up pruning........" && sleep 1
-#################################################
+printYellow "8. Настраиваем прунинг........" && sleep 1
 PRUNING_INTERVAL=$(shuf -n1 -e 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97)
-sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^pruning-interval *=.*|pruning-interval = "'$PRUNING_INTERVAL'"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^snapshot-interval *=.*|snapshot-interval = 2000|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^pruning-interval *=.*|pruning-interval = "'$PRUNING_INTERVAL'"|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^snapshot-interval *=.*|snapshot-interval = 2000|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001utia"|g' $HOME/.celestia-app/config/app.toml
+	sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.celestia-app/config/config.toml
+printGreen "Готово!" && sleep 1
 
-sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001utia"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.celestia-app/config/config.toml
-#################################################
-printGreen "Completed." && sleep 1
 
-printYellow "9.Create a service file........" && sleep 1
-#################################################
+printYellow "Cоздаем сервис файл........"
 sudo tee /etc/systemd/system/celestia-appd.service > /dev/null << EOF
 [Unit]
 Description=Celestia Validator Node
@@ -128,23 +122,31 @@ LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
 EOF
-#################################################
-printGreen "Completed." && sleep 1
+printGreen "Готово!" && sleep 1
 
+
+printYellow "11. Подгружаем последний снапшот........"
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app --keep-addr-book
-
 SNAP_NAME=$(curl -s https://snapshots3-testnet.nodejumper.io/celestia-testnet/ | egrep -o ">mocha.*\.tar.lz4" | tr -d ">")
 curl https://snapshots3-testnet.nodejumper.io/celestia-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
+printGreen "Готово."
 
+printYellow "11. Запускаем ноду........" && sleep 2
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl start celestia-appd
 
+printGreen "Готово!"
+printBCyan "УСТАНОВКА ЗАВЕРШЕНА"
+
 printRed  =============================================================================== 
-echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
+	echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
 printRed  =============================================================================== 
 
+submenu
+
 }
+
 
 submenu(){
 echo -ne "
@@ -153,40 +155,38 @@ $(printGreen    'Установка завершена.')
 		2) Проверить синхронизацию
 		3) В меню
 Нажмите Enter:  "
-   read -r ans
-    case $ans in
-        1) 
-        subsubmenu
-        ;;
-        2) 
-        curl -s localhost:26657/status | jq .result.sync_info.catching_up
-        submenu
-        ;;
-        3) 
-        source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
-        ;;
-        *)
-        source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
-        printRed  =======================================================================
-        echo $(redprint 'Неверный запрс !!!')
-        submenu
-        ;;
-    esac
+	read -r ans
+	case $ans in
+		1) 
+		subsubmenu
+		;;
+		2) 
+		curl -s localhost:26657/status | jq .result.sync_info.catching_up
+		submenu
+		;;
+		3) 
+		source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/main.sh)
+		;;
+		*)
+		source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/logo.sh)
+		printRed  =======================================================================
+		echo $(redprint 'Неверный запрс !!!')
+		submenu
+		;;
+	esac
 }
 
 subsubmenu(){
-    echo -ne "
-$(printYellow    'Для того что бы остановить журнал логов надо нажать') $(printCyan 'CTRL+Z') $(printYellow '!!!')
-
-Для продолжения нажмите Enter:  "
-   read -r ans
-    case $ans in
-   
-    *)
-        sudo journalctl -u celestia-appd -f --no-hostname -o cat
-        submenu
-        ;;
-    esac
+	echo -ne "
+	$(printYellow    'Для того что бы остановить журнал логов надо нажать') $(printBCyan 'CTRL+Z') $(printYellow '!!!')
+	$(printBCyan 'Для продолжения нажмите Enter:')  "
+		read -r ans
+		case $ans in
+			*)
+		sudo journalctl -u celestia-appd -f --no-hostname -o cat
+		submenu
+		;;
+	esac
 }
 
 

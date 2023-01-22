@@ -169,7 +169,6 @@ printGreen "Готово."
 printYellow "11. Запускаем ноду........" && sleep 2
 	sudo systemctl start nibid
 printGreen "Готово!"
-printBCyan "УСТАНОВКА ЗАВЕРШЕНА"
 
 printRed  =============================================================================== 
 	echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
@@ -183,7 +182,7 @@ submenu
 
 submenu(){
 echo -ne "
-$(printBGreen    'Установка завершена........') $(printBGreenBlink '!!!')
+$(printBGreen    'УСТАНОВКА ЗАВЕРШЕНА........') $(printBGreenBlink '!!!')
  		1) Просмотреть логи
  		2) Проверить синхронизацию
  		3) В меню
