@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #X-l1bra  
-	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
+	clear #&& source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 clear
 printLogo
 printcelestia
@@ -37,56 +37,41 @@ yes(){
 clear
 printLogo
 printRed  =======================================================================
-read -r -p "Enter node moniker:" NODE_MONIKER
+read -r -p "Enter node moniker:" MONIKER
 
-printCyan "Please wait........" && sleep 1
 
-printYellow "1. Update........" && sleep 1
-#################################################
-sudo apt update  > /dev/null 2>&1 && sudo apt upgrade -y  > /dev/null 2>&1
-#################################################
-printGreen "Updates uploaded." && sleep 1
+printBCyan "Пожалуйста подождите........" && sleep 1
+printYellow "1. Oбновляем наш сервер........" && sleep 1
+	sudo apt update > /dev/null 2>&1
+printGreen "Готово!" && sleep 1
 
-printYellow "2.Installing packages........" && sleep 1
-############printRed  =============================================================================== 
-echo -e "Check logs:                ${CYAN} sudo journalctl -u celestia-appd -f --no-hostname -o cat ${NC}"
-echo -e "Check synchronization:     ${CYAN} celestia-appd status 2>&1 | jq .SyncInfo.catching_up${NC}"
-echo -e "Add New Wallet:            ${CYAN} celestia-appd keys add wallet${NC}"
-echo -e "Add New Orchestrator:      ${CYAN} celestia-appd keys add orchestrator${NC}"
-echo -e "Recover Existing Wallet:   ${CYAN} celestia-appd keys add wallet --recover${NC}"
-echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra${NC}"
-printRed  =============================================================================== #####################################
-sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
-#################################################
-printGreen "Installation completed." && sleep 1
 
-printYellow "5.Set variables........" && sleep 1
-#################################################
+printYellow "2. Устанавливаем дополнительные пакеты........" && sleep 1
+	sudo apt install -y make clang pkg-config libssl-dev build-essential git gcc lz4 chrony unzip curl jq ncdu htop net-tools lsof fail2ban wget -y > /dev/null 2>&1
+printGreen "Готово!" && sleep 1
+
+
+printYellow "3. Задаем переменные........" && sleep 1
 CHAIN_ID="mocha"
 CHAIN_DENOM="utia"
 BINARY_NAME="celestia-appd"
 BINARY_VERSION_TAG="v0.11.0"
 IDENTITY="8F3C23EC3306B513"
-echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
+echo -e "Node moniker:       ${CYAN}$MONIKER${NC}"
 echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
 echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
 echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
 echo -e "IDENTITY:           ${CYAN}$IDENTITY${NC}"
-#################################################
-printGreen "Completed." && sleep 1
+printGreen "Готово!" && sleep 1
 
-printYellow "3.Installing go........" && sleep 1
-#################################################
-if ! [ -x "$(command -v go)" ]; then
-  source <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-scripts/master/utils/go_install.sh")
-  source .bash_profile
-fi
 
+printYellow "4. Устанавливаем go........" && sleep 1
+	source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/go/go_1.19.4.sh)
 echo "$(go version)"
-#################################################
-printGreen "Completed." && sleep 1
+printGreen "Готово!" && sleep 1
 
-printYellow "4.Download and install binary........"
+
+printYellow "5. Скачиваем и устанавливаем бинарник........"
 #################################################
 cd $HOME || return
 rm -rf celestia-app
