@@ -119,10 +119,10 @@ printGreen "Готово!" && sleep 1
 
 
 printYellow "6. Инициализируем ноду........" && sleep 1
-	nibid config chain-id nibiru-testnet-2
-	nibid config keyring-backend test
-	nibid config node tcp://localhost:39657
-	nibid init $MONIKER --chain-id nibiru-testnet-2
+nibid config chain-id nibiru-testnet-2
+nibid config keyring-backend test
+nibid config node tcp://localhost:39657
+nibid init $MONIKER --chain-id nibiru-testnet-2
 printGreen "Готово!" && sleep 1
 
 
@@ -174,6 +174,8 @@ printRed  ======================================================================
 	echo -e "X-l1bra:                   ${CYAN} https://t.me/xl1bra ${NC}"
 printRed  =============================================================================== 
 
+submenu
+
 }
 
 
@@ -191,7 +193,7 @@ $(printBGreen    'Установка завершена........') $(printBGreenB
 		subsubmenu
 		;;
 		2)
-		curl -s localhost:26657/status | jq .result.sync_info.catching_up
+		nibid status 2>&1 | jq .SyncInfo
 		submenu
 		;;
 		3)

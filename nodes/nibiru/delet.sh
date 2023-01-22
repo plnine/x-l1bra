@@ -39,7 +39,7 @@ clear
 printLogo
 printnibiru
 echo $(printBYellow 'Удаляем.....!')
-systemctl stop nibid.servic && rm -rf /etc/systemd/system/nibidd.service && rm -rf /usr/bin/nibid && rm -rf nibiru && rm -rf .nibid
+systemctl stop nibidd && rm -rf /etc/systemd/system/nibidd.service && rm -rf /usr/bin/nibid && rm -rf nibiru && rm -rf .nibid
 submenu
 }
 
