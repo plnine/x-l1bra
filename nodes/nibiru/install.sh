@@ -7,10 +7,10 @@ printnibiru
 echo
 	printGreen  ----------------------------------------
 echo $(printYellow 'Минимальные требования к оборудованию.')
-echo $(printBCyan '4CPU 8RAM 100GB')
+echo $(printBCyan '4CPU 8RAM 200GB')
 	printGreen  ----------------------------------------
 echo $(printYellow 'Рекомендуемые требования к оборудованию.')
-echo $(printBCyan '8CPU 32RAM 200GB')
+echo $(printBCyan '8CPU 15RAM 400GB')
 	printGreen  ----------------------------------------
 
 mainmenu() {

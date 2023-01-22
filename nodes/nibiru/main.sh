@@ -47,19 +47,24 @@ mainmenu() {
 }
 
 install(){
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/install.sh)
+source <(curl -s https://github.com/plnine/x-l1bra/blob/main/nodes/nibiru/install.sh)
 }
 
 control(){
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/control.sh)
+source <(curl -s https://github.com/plnine/x-l1bra/blob/main/nodes/nibiru/control.sh)
 }
 
 update(){
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/update.sh)
+clear
+printLogo
+echo
+echo $(printBYellow "Coming soon !!!")
+mainmenu
+#source <(curl -s https://github.com/plnine/x-l1bra/blob/main/nodes/nibiru/update.sh)
 }
 
 delet(){
-source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/celestia/delet.sh)
+source <(curl -s https://github.com/plnine/x-l1bra/blob/main/nodes/nibiru/delet.sh)
 }
 
 back(){
