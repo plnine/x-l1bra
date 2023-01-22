@@ -62,7 +62,7 @@ printGreen "Готово!" && sleep 1
 
 
 printYellow "3. Задаем переменные........" && sleep 1
-	MONIKER=X-l1bra
+#	MONIKER=X-l1bra
 	CHAIN_ID="nibiru-testnet-2"
 	CHAIN_DENOM="unibi"
 	BINARY_NAME="nibid"
