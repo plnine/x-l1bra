@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #X-l1bra  
-clear 
+	clear && source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/scripts/common.sh)
 printLogo
 printcelestia
 
@@ -12,9 +12,9 @@ mainmenu() {
 3) Добавить кошелек orchestrator
 4) Проверить синхронизацию
 5) Просмотреть логи
-6) Вернутся назад
-$(yellowprint  '0) Выйти')
-$(cyanprint 'Введите цифру:')  "
+$(printBGreen  '6)' Вернутся назад
+$(printYellow  '0)' Выйти
+$(printBCyan 'Введите цифру:')  "
    read -r ans
     case $ans in
     1)
