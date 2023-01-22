@@ -58,7 +58,6 @@ defund(){
 #source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/defund/main.sh)
 clear
 printLogo
-prin
 printRed  =======================================================================
 echo
 printComing
