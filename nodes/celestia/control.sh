@@ -3,9 +3,8 @@
 #X-l1bra  
 clear 
 printLogo
-printRed  =======================
-echo $(redprint '==') $(cyanprint 'CELESTIA') $(redprint '==') $(yellowprint '*****') $(redprint '==')
-printRed  =======================
+printcelestia
+
 mainmenu() {
     echo -ne "
 1) Проверить баланс

@@ -126,6 +126,12 @@ function addToPath {
 
 function printnibiru {
 printRed  ====================
-echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
+echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printBYellow '****') $(printRed '==')
 printRed  ====================
+}
+
+function printcelestia {
+printRed  =======================
+echo $(printRed '==') $(printBCyan 'CELESTIA') $(printRed '==') $(printBYellow '*****') $(printRed '==')
+printRed  =======================
 }
