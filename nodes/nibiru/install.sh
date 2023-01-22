@@ -47,7 +47,7 @@ yes(){
 clear
 printLogo
 printRed  =======================================================================
-# read -r -p "Введите имя ноды:" NODE_MONIKER
+read -r -p "Введите имя ноды:" MONIKER
 
 
 printBCyan "Пожалуйста подождите........" && sleep 1
