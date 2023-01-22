@@ -38,9 +38,7 @@ $(printYellow  '0)') Выйти
 		*)
 		clear
 		printLogo
-		printRed  ====================
-		echo $(printRed '==') $(printBBlue 'NIBIRU') $(printRed '==') $(printYellow '****') $(printRed '==')
-		printRed  ====================
+		printnibiru
 		echo $(printRed 'Неверный запрос !')
 		;;
 	esac
