@@ -136,8 +136,8 @@ echo $(printRed '==') $(printBMagenta 'CELESTIA') $(printRed '==') $(printBYello
 printRed  =======================
 }
 
-function comingsoon {
-printCyanBlink  =======================
+function printComing {
+printCyanBlink  ===================
 echo $(printCyanBlink '==') $(printBYellow 'Coming soon !!!') $(printCyanBlink '==')
-printCyanBlink  =======================
+printCyanBlink  ===================
 }

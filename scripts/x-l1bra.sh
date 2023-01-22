@@ -58,8 +58,10 @@ defund(){
 #source <(curl -s https://raw.githubusercontent.com/plnine/x-l1bra/main/nodes/defund/main.sh)
 clear
 printLogo
+prin
 printRed  =======================================================================
-echo $(printBYellow "Coming soon !!!")
+echo
+printComing
 mainmenu
 }
 
@@ -68,7 +70,8 @@ shardeum(){
 clear
 printLogo
 printRed  =======================================================================
-echo $(printBYellow "Coming soon !!!")
+echo
+printComing
 mainmenu
 }
 
