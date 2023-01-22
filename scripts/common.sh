@@ -137,7 +137,7 @@ printRed  =======================
 }
 
 function printComing {
-printCyanBlink  ===================
+printCyanBlink  =====================
 echo $(printCyanBlink '==') $(printBYellow 'Coming soon !!!') $(printCyanBlink '==')
-printCyanBlink  ===================
+printCyanBlink  =====================
 }
